@@ -1,23 +1,19 @@
-import { Suspense } from "react";
+import React, { Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 import Loader from "react-loader-spinner";
 
 import Layout from "./components/layout/Layout";
-import Home from "./pages/Home";
-import Menu from "./pages/Menu";
-import NotFound from "./pages/NotFound";
+
+const Home = React.lazy(() => import("./pages/Home"));
+const Menu = React.lazy(() => import("./pages/Menu"));
+const NotFound = React.lazy(() => import("./pages/NotFound"));
 
 function App() {
   return (
     <Layout>
       <Suspense
         fallback={
-          <Loader
-            type="Puff"
-            color="#00BFFF"
-            height={100}
-            width={100}
-          />
+          <Loader type="Puff" color="#FFF" height={60} width={60} />
         }
       >
         <Routes>
