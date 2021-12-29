@@ -1,14 +1,16 @@
 import { NavLink } from "react-router-dom";
 
+import classes from "./MainNavigation.module.css"
+
 const MainNavigation = () => {
   return (
     <nav>
       <ul>
         <li>
-          <NavLink to="/">Home</NavLink>
+          <NavLink to="/" className={(navData) => (navData.isActive ? classes.active : "")}>Home</NavLink>
         </li>
         <li>
-          <NavLink to="/menu">Menu</NavLink>
+          <NavLink to="/menu" className={(navData) => (navData.isActive ? classes.active : "")}>Menu</NavLink>
         </li>
       </ul>
     </nav>
