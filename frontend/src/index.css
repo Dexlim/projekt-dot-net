@@ -7,3 +7,15 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+:root {
+  --black: #080302;
+  --red: #b52032;
+  --brown: #a66c48;
+  --light-gray: #ebedef;
+  --dark-gray: #c4c7cf;
+}
+
+img {
+  max-width: 100%;
+}
