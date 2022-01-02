@@ -1,5 +1,7 @@
+import MealsList from "../components/Pizza/MealsList";
+
 const Menu = () => {
-    return <p>Menu</p>
-}
+  return <MealsList />;
+};
 
 export default Menu;
