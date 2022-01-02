@@ -12,9 +12,7 @@ function App() {
   return (
     <Layout>
       <Suspense
-        fallback={
-          <Loader type="Puff" color="#FFF" height={60} width={60} />
-        }
+        fallback={<Loader type="Puff" color="#FFF" height={60} width={60} />}
       >
         <Routes>
           <Route path="/" element={<Home />} />
