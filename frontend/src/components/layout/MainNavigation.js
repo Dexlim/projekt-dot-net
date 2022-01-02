@@ -3,7 +3,6 @@ import { NavLink } from "react-router-dom";
 import classes from "./MainNavigation.module.css";
 
 import logo from "../../images/logo.png";
-import { useState } from "react";
 
 const MainNavigation = (props) => {
   return (
