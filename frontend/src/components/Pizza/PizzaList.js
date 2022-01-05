@@ -5,8 +5,6 @@ import CartContext from "../../store/cart-context";
 const MealItem = (props) => {
   const cartCtx = useContext(CartContext);
 
-  console.log(cartCtx.totalAmount);
-
   const submitHandler = (event) => {
     event.preventDefault();
     cartCtx.addItem({

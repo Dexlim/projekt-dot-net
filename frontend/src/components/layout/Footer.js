@@ -1,23 +1,20 @@
 import classes from "./Footer.module.css";
 
-// react-icons
-import { VscLocation, VscMail, VscFeedback } from "react-icons/vsc";
-
 const Footer = () => {
   return (
     <footer>
       <div className={classes.contact}>
         <ul>
           <li>
-            <VscLocation />
+            <i className="fas fa-map-marker-alt"></i>
             <p>Rybaki 10, 00-221 Warszawa</p>
           </li>
           <li>
-            <VscMail />
+            <i className="far fa-envelope"></i>
             <p>zalewscypizza@gmail.com</p>
           </li>
           <li>
-            <VscFeedback />
+            <i className="fas fa-phone"></i>
             <p>22 340 10 10</p>
           </li>
         </ul>

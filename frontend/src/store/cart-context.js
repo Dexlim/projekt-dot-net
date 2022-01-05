@@ -3,13 +3,16 @@ import React, { useState } from "react";
 const CartContext = React.createContext({
   items: [],
   totalAmount: 0,
+  numberOfItems: 0,
   addItem: (product) => {},
   removeItem: (product) => {},
+  clearItemsList: () => {},
 });
 
 export const CartContextProvider = (props) => {
   const [itemsList, setItemsList] = useState([]);
   const [totalAmount, setTotalAmount] = useState(0);
+  const [numberOfItems, setNumberOfItems] = useState(0);
 
   const addItemToCartHandler = (item) => {
     const updatedTotalAmount = totalAmount + item.price;
@@ -32,8 +35,15 @@ export const CartContextProvider = (props) => {
       updatedItems[existingPizzaIndex] = updatedPizza;
     }
 
+    setNumberOfItems((prev) => (prev += item.amount));
     setItemsList(updatedItems);
     setTotalAmount(updatedTotalAmount);
+  };
+
+  const clearItemsList = () => {
+    setNumberOfItems(0);
+    setItemsList([]);
+    setTotalAmount(0);
   };
 
   const removeItemFromCartHandler = (id) => {
@@ -43,8 +53,10 @@ export const CartContextProvider = (props) => {
   const cartContext = {
     items: itemsList,
     totalAmount: totalAmount,
+    numberOfItems: numberOfItems,
     addItem: addItemToCartHandler,
     removeItem: removeItemFromCartHandler,
+    clearItemsList: clearItemsList,
   };
   return (
     <CartContext.Provider value={cartContext}>
