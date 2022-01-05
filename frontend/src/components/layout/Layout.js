@@ -17,7 +17,7 @@ const Layout = (props) => {
 
   return (
     <Fragment>
-      {showModal && <Cart closeModal={closeModalHandler} />}
+      {showModal && <Cart closeModal={closeModalHandler}/>}
       <MainNavigation showModal={showModalHandler} />
       <main>{props.children}</main>
       <Footer />

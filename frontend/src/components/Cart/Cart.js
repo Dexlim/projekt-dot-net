@@ -1,23 +1,28 @@
-import { useContext } from "react";
-
-import CartContext from "../../store/cart-context";
+import { useState } from "react";
 
 import Modal from "../UI/Modal";
-import CartItem from "./CartItem";
+import Form from "./Form";
+
+import styles from "./Cart.module.css";
+import Order from "./Order";
 
 const Cart = (props) => {
-  const cartCtx = useContext(CartContext);
+  const [showForm, setShowForm] = useState(false);
+
+  const setShowFormHandler = () => {
+    setShowForm((prev) => !prev);
+  };
 
   return (
     <Modal onClose={props.closeModal}>
-      <h2>Podsumowanie zamówienia</h2>
-      <ul>
-        {cartCtx.items.map((item) => (
-          <CartItem item={item} />
-        ))}
-      </ul>
-      <p>Wartosc koszyka: {cartCtx.totalAmount} zł</p>
-      <button onClick={props.closeModal}>Zamknij</button>
+      <button onClick={props.closeModal} className={styles.close}>
+        X
+      </button>
+      {showForm && <Form />}
+      {!showForm && <Order closeModal={props.onClose} />}
+      <button type="button" onClick={setShowFormHandler}>
+        {!showForm ? "Złóż zamówienie" : "Pokaż zamówienie"}
+      </button>
     </Modal>
   );
 };

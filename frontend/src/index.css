@@ -19,3 +19,28 @@
 img {
   max-width: 100%;
 }
+
+li {
+  list-style: none;
+}
+
+button {
+  background-color: transparent;
+  padding: 4px;
+  border: 1px solid darkgray;
+  border-radius: 10px;
+}
+
+button:hover,
+a:hover {
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+}
+
+#root {
+  max-width: 1440px;
+  margin: 0 auto;
+}

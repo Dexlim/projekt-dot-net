@@ -1,25 +1,23 @@
 import { NavLink } from "react-router-dom";
 
-import classes from "./MainNavigation.module.css";
+import styles from "./MainNavigation.module.css";
 
 import logo from "../../images/logo.png";
 
 const MainNavigation = (props) => {
   return (
-    <nav>
+    <nav className={styles.navigation}>
+      <NavLink
+        to="/"
+        className={(navData) => (navData.isActive ? styles.active : "")}
+      >
+        <img src={logo} alt="Zale(w)scy pizza" className={styles.logo} />
+      </NavLink>
       <ul>
         <li>
           <NavLink
             to="/"
-            className={(navData) => (navData.isActive ? classes.active : "")}
-          >
-            <img src={logo} alt="Zale(w)scy pizza" />
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to="/"
-            className={(navData) => (navData.isActive ? classes.active : "")}
+            className={(navData) => (navData.isActive ? styles.active : "")}
           >
             Home
           </NavLink>
@@ -27,14 +25,18 @@ const MainNavigation = (props) => {
         <li>
           <NavLink
             to="/menu"
-            className={(navData) => (navData.isActive ? classes.active : "")}
+            className={(navData) => (navData.isActive ? styles.active : "")}
           >
             Menu
           </NavLink>
         </li>
         <li>
-          <button type="button" onClick={props.showModal}>
-            Podsumowanie
+          <button
+            type="button"
+            onClick={props.showModal}
+            className={styles.order}
+          >
+            Koszyk
           </button>
         </li>
       </ul>
