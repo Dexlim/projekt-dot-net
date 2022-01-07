@@ -35,6 +35,7 @@ const Form = () => {
         <label forhtml="postalcode">Kod pocztowy</label>
         <input id="postalcode" type="text" />
       </div>
+      <button type="submit">Złóż zamówienie</button>
     </form>
   );
 };
