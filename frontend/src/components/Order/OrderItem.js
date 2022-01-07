@@ -1,4 +1,4 @@
-const CartItem = (props) => {
+const OrderItem = (props) => {
   return (
     <li>
       <h3>{props.item.name}</h3>
@@ -8,4 +8,4 @@ const CartItem = (props) => {
   );
 };
 
-export default CartItem;
+export default OrderItem;
