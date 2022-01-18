@@ -5,8 +5,8 @@ const EmptyOrder = () => {
   return (
     <Fragment>
       <p>
-        Twój koszyk jest pusty. Przejrzyj naszą ofertę aby wybrać coś dla
-        siebie.
+        Twój koszyk jest aktualnie pusty. Przejrzyj naszą ofertę aby wybrać coś
+        dla siebie.
       </p>
       <Link to="/menu">Nasza oferta</Link>
     </Fragment>
