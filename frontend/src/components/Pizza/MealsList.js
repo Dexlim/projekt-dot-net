@@ -1,24 +1,30 @@
+import { useState, Fragment, useEffect } from "react";
 import MealItem from "./PizzaList";
 
-const DUMMY_DATA = [
-  {
-    id: 0,
-    name: "pizza wloska",
-    price: 12.9,
-  },
-  {
-    id: 1,
-    name: "pizza polska",
-    price: 10.9,
-  },
-];
-
 const MealsList = () => {
-  const mealsList = DUMMY_DATA.map((meal) => (
-    <MealItem key={meal.id} id={meal.id} name={meal.name} price={meal.price} />
-  ));
+  const [mealsList, setMealsList] = useState([]);
 
-  return <ul>{mealsList}</ul>;
+  useEffect(() => {
+    fetch(process.env.REACT_APP_API + "pizza")
+      .then((response) => response.json())
+      .then((meals) => setMealsList(meals));
+  }, []);
+
+  return (
+    <Fragment>
+      {mealsList &&
+        mealsList.map((meal) => (
+          <MealItem
+            key={meal.productId}
+            id={meal.productId}
+            name={meal.name}
+            description={meal.description}
+            price={meal.price}
+          />
+        ))}
+      {!mealsList && <p>Ładowanie...</p>}
+    </Fragment>
+  );
 };
 
 export default MealsList;

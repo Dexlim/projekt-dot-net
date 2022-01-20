@@ -1,23 +1,40 @@
 import { useContext } from "react";
-
 import CartContext from "../../store/cart-context";
 
 import Modal from "../UI/Modal";
-import CartItem from "./CartItem";
+
+import styles from "./Cart.module.css";
+import Order from "../Order/Order";
+import { Link } from "react-router-dom";
+import { Fragment } from "react";
 
 const Cart = (props) => {
   const cartCtx = useContext(CartContext);
 
+  const orderNotEmpty = (
+    <Fragment>
+      <button onClick={props.closeModal} className={styles.close}>
+        X
+      </button>
+      <Order closeModal={props.onClose} />
+      <Link to="/zamowienie" onClick={props.closeModal}>
+        Złóż zamówienie
+      </Link>
+    </Fragment>
+  );
+
+  const orderIsEmpty = (
+    <Fragment>
+      <p>Twój koszyk jest aktaulnie pusty.</p>
+    </Fragment>
+  );
+
   return (
     <Modal onClose={props.closeModal}>
-      <h2>Podsumowanie zamówienia</h2>
-      <ul>
-        {cartCtx.items.map((item) => (
-          <CartItem item={item} />
-        ))}
-      </ul>
-      <p>Wartosc koszyka: {cartCtx.totalAmount} zł</p>
-      <button onClick={props.closeModal}>Zamknij</button>
+      <button onClick={props.closeModal} className={styles.close}>
+        X
+      </button>
+      {cartCtx.totalAmount > 0 ? orderNotEmpty : orderIsEmpty}
     </Modal>
   );
 };

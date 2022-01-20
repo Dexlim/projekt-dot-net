@@ -6,6 +6,7 @@ import Layout from "./components/layout/Layout";
 
 const Home = React.lazy(() => import("./pages/Home"));
 const Menu = React.lazy(() => import("./pages/Menu"));
+const Order = React.lazy(() => import("./components/Order/OrderSummary"));
 const NotFound = React.lazy(() => import("./pages/NotFound"));
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/menu" element={<Menu />} />
+          <Route path="/zamowienie" element={<Order />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>

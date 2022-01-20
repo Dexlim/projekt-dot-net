@@ -1,27 +1,19 @@
 import classes from "./Footer.module.css";
 
-// react-icons
-import { VscLocation, VscMail, VscFeedback } from "react-icons/vsc";
-
 const Footer = () => {
   return (
-    <footer>
-      <div className={classes.contact}>
-        <ul>
+    <footer className={classes.footer}>
+        <ul>INFORMACJE
           <li>
-            <VscLocation />
-            <p>Rybaki 10, 00-221 Warszawa</p>
+            <i className="fas fa-map-marker-alt"> Generała Sylwestra Kaliskiego 15, 01-476 Warszawa</i>
           </li>
           <li>
-            <VscMail />
-            <p>zalewscypizza@gmail.com</p>
+            <i className="far fa-envelope"> zalewscypizza@gmail.com</i>
           </li>
           <li>
-            <VscFeedback />
-            <p>22 340 10 10</p>
+            <i className="fas fa-phone"> (+48) 123 456 789</i>
           </li>
         </ul>
-      </div>
     </footer>
   );
 };

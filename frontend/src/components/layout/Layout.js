@@ -1,4 +1,6 @@
 import { Fragment, useState } from "react";
+import styles from "./Layout.module.css";
+
 
 import Cart from "../Cart/Cart";
 import MainNavigation from "./MainNavigation";
@@ -17,9 +19,9 @@ const Layout = (props) => {
 
   return (
     <Fragment>
-      {showModal && <Cart closeModal={closeModalHandler} />}
+      {showModal && <Cart closeModal={closeModalHandler}/>}
       <MainNavigation showModal={showModalHandler} />
-      <main>{props.children}</main>
+      <main className={styles.main} >{props.children}</main>
       <Footer />
     </Fragment>
   );

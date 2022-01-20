@@ -1,3 +1,24 @@
-footer {
-  background-color: var(--brown);
+.footer{
+    position: relative;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height:auto;
+    background-color: rgb(200, 16, 43);
+    color: white;
+    align-content: space-between;
+}
+
+.footer ul{
+    padding-top: 1rem;
+    padding-left: 2rem;
+    padding-bottom: 1rem;
+    font-size:larger;
+    line-height: 1.6;
+    font-weight: bolder;
+    font: Tahoma;
+}
+.footer ul li{
+    font-size:medium;
+    font-weight: lighter;
 }

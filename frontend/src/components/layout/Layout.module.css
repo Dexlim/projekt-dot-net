@@ -1,0 +1,13 @@
+.main{
+    min-height: 100vh;
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255,1),rgba(255,255,255,0),rgba(200,16,43,0), rgba(200, 16, 43,1)), url("../../images/background.png");
+    background-size: 100% auto;
+
+}
+
+@media only screen and (max-width: 1000px) {
+    .main{
+        background-size: auto 100%;
+    }
+}
+

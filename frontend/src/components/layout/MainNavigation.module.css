@@ -1,4 +1,44 @@
-.active {
+.navigation {
+  padding: 20px;
+}
+
+.navigation ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
+
+.navigation li {
+  width: 33%;
+}
+
+.navigation li:not(:last-child) {
+  border-right: 1px solid var(--light-gray);
+}
+
+.navigation .button,
+.navigation a {
+  text-transform: uppercase;
+  transition: 0.4s;
+}
+
+.navigation a {
+  color: var(--dark-grey-blue);
+}
+
+.navigation .button:hover {
+  background-color: darkred;
+  color: white;
+}
+
+.navigation a.active {
   font-weight: bold;
   color: var(--dark-grey-blue);
+}
+
+.bump {
+  background-color: darkred;
+  transform: scale(1.3);
 }

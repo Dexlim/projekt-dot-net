@@ -5,8 +5,6 @@ import CartContext from "../../store/cart-context";
 const MealItem = (props) => {
   const cartCtx = useContext(CartContext);
 
-  console.log(cartCtx.totalAmount);
-
   const submitHandler = (event) => {
     event.preventDefault();
     cartCtx.addItem({
@@ -20,7 +18,8 @@ const MealItem = (props) => {
   return (
     <li>
       <div>
-        <h3>{props.name}</h3>
+        <h2>{props.name}</h2>
+        <h3>{props.description}</h3>
         <span>{props.price}</span>
       </div>
       <div>

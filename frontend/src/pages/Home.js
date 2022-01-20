@@ -1,5 +1,7 @@
+import Map from "../components/Home/Map";
+
 const Home = () => {
-  return <p>Home</p>;
+  return <Map />;
 };
 
 export default Home;
