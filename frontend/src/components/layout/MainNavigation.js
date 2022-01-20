@@ -9,6 +9,7 @@ import logo from "../../images/logo.png";
 const MainNavigation = (props) => {
   const [btnIsHighlighted, setBtnIsHighlighted] = useState(false);
   const cartCtx = useContext(CartContext);
+  const [activePage, setActivePage] = useState("Home");
 
   const btnClasses = `${styles.button} ${btnIsHighlighted ? styles.bump : ""}`;
 
@@ -29,37 +30,54 @@ const MainNavigation = (props) => {
 
   return (
     <nav className={styles.navigation}>
-      <NavLink
-        to="/"
-        className={(navData) => (navData.isActive ? styles.active : "")}
-      >
-        <img src={logo} alt="Zale(w)scy pizza" className={styles.logo} />
-      </NavLink>
+      <div className={styles.picHolder}>
+        <NavLink
+          to="/"
+          className={(navData) => (navData.isActive ? styles.active : "")}
+        >
+          <img src={logo} alt="Zale(w)scy pizza" className={styles.logo} />
+        </NavLink>
+      </div>
       <ul>
-        <li>
+        <li className={activePage === "Home" && styles.active}>
           <NavLink
             to="/"
             className={(navData) => (navData.isActive ? styles.active : "")}
+            onClick={() => {
+              setActivePage("Home");
+            }}
           >
             Home
           </NavLink>
         </li>
-        <li>
+        <li className={activePage === "Menu" && styles.active}>
           <NavLink
             to="/menu"
             className={(navData) => (navData.isActive ? styles.active : "")}
+            onClick={() => {
+              setActivePage("Menu");
+            }}
           >
             Menu
           </NavLink>
         </li>
-        <li>
-          <button
+        <li
+          className={`${styles.cart}`}
+          onClick={() => {
+            setActivePage("Koszyk");
+          }}
+        >
+          <i
+            className="fas fa-shopping-cart"
             type="button"
             onClick={props.showModal}
-            className={btnClasses}
           >
-            Koszyk
-          </button>
+            Koszyk ({cartCtx.numberOfItems})
+          </i>
+          <div className={styles.tooltip}>
+            Cena: {cartCtx.totalAmount.toFixed(2)}
+            <br />
+          </div>
         </li>
       </ul>
     </nav>

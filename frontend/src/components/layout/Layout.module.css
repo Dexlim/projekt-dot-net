@@ -5,9 +5,21 @@
 
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 1140px) {
     .main{
         background-size: auto 100%;
+    }
+}
+
+@media only screen and (max-height: 600px) {
+    .main{
+        background-size: 100% auto;
+    }
+}
+
+@media only screen and (max-height: 600px) and (max-width: 1140px) {
+    .main{
+        background-size: 100% 100%;
     }
 }
 

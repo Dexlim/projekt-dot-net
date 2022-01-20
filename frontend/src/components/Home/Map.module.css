@@ -1,25 +1,52 @@
-.map-container {
-  display: flex;
-  flex-direction: right,column;
-  justify-content: right;
-  align-items: right;
+.home-page {
+  display:flex;
+  flex-flow: row;
   background-color: #292525f5;
-  border-radius: 5%;
+  border-radius: 5vw;
   width: 80%;
   margin-left: 10%;
   margin-top: 5%;
   color: white;
 }
-
-.map {
-  width: 25vw;
-  height: 25vw;
-  margin-right: 10%;
-  margin-top: 10%;
-  margin-bottom: 10%;
+.descriptions{
+  width:100%;
 }
 
-.h2 {
-  position: relative;
+.descriptions b{
+  font-size:x-large;
+}
 
+.map-container{
+  align-items:center;
+  text-align:center;
+  margin-left: 5%;
+  margin-top: 5%;
+  margin-right: 5%;
+}
+.map {
+  width: 35vw;
+  height: 35vw;
+  margin-top: 2%;
+  margin-bottom: 5%;
+  z-index: 0;
+}
+
+@media only screen and (max-width: 900px){
+    .home-page{
+      display:flex;
+      flex-direction: column;
+      background-color: #292525f5;
+      border-radius: 5vw;
+      width: 90%;
+      margin-left: 5%;
+      margin-top: 5%;
+      color: white;
+      align-items:center;
+    }
+    .map {
+      width: 35vh;
+      height: 35vh;
+      margin-top: 2%;
+      margin-bottom: 5%;
+    }
 }

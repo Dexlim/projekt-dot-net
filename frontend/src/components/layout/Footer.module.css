@@ -6,7 +6,9 @@
     height:auto;
     background-color: rgb(200, 16, 43);
     color: white;
-    align-content: space-between;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: row;
 }
 
 .footer ul{
@@ -16,9 +18,21 @@
     font-size:larger;
     line-height: 1.6;
     font-weight: bolder;
-    font: Tahoma;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 .footer ul li{
     font-size:medium;
     font-weight: lighter;
+}
+
+.authors{
+    text-align: right;
+    padding-top: 3rem;
+    padding-right: 2rem;
+}
+
+.authors p{
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    line-height: 1;
+    font-size: smaller;
 }

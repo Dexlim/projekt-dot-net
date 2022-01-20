@@ -7,6 +7,7 @@ const MealItem = (props) => {
 
   const submitHandler = (event) => {
     event.preventDefault();
+
     cartCtx.addItem({
       id: props.id,
       name: props.name,
@@ -21,6 +22,7 @@ const MealItem = (props) => {
         <h2>{props.name}</h2>
         <h3>{props.description}</h3>
         <span>{props.price}</span>
+        <img src={props.imgUrl}/>
       </div>
       <div>
         <form onSubmit={submitHandler}>
