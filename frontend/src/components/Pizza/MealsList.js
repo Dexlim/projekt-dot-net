@@ -1,4 +1,4 @@
-import { useState, Fragment, useEffect } from "react";
+import { Fragment } from "react";
 import MealItem from "./PizzaList";
 
 const mealsList = [
