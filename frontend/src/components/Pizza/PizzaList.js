@@ -1,5 +1,5 @@
 import { useContext } from "react";
-
+import styles from "./PizzaList.module.css";
 import CartContext from "../../store/cart-context";
 
 const MealItem = (props) => {
@@ -17,18 +17,18 @@ const MealItem = (props) => {
   };
 
   return (
-    <li>
-      <div>
-        <h2>{props.name}</h2>
-        <h3>{props.description}</h3>
-        <span>{props.price}</span>
-        <img src={props.imgUrl}/>
+    <li className={styles.pizzalist}>
+      <img src={props.imgUrl} />
+      <div className={styles.pizzatext}>
+      <h2>{props.name}</h2>
+      <h3>{props.description}</h3>
       </div>
-      <div>
-        <form onSubmit={submitHandler}>
-          <button>Dodaj</button>
-        </form>
+      <div className={styles.btn}>
+        {props.price} zł
+        <i onClick={submitHandler} className="fas fa-plus"></i>
       </div>
+
+
     </li>
   );
 };

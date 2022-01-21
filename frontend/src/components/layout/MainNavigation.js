@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useRef } from "react";
 import CartContext from "../../store/cart-context";
+import { useLocation } from "react-router-dom";
 
 import styles from "./MainNavigation.module.css";
 
@@ -9,9 +10,10 @@ import logo from "../../images/logo.png";
 const MainNavigation = (props) => {
   const [btnIsHighlighted, setBtnIsHighlighted] = useState(false);
   const cartCtx = useContext(CartContext);
-  const [activePage, setActivePage] = useState("Home");
-
+  const ref = useRef();
+  const onScreen = useOnScreen(ref, "0px");
   const btnClasses = `${styles.button} ${btnIsHighlighted ? styles.bump : ""}`;
+  const location = useLocation();
 
   useEffect(() => {
     if (cartCtx.items.length === 0) {
@@ -39,43 +41,41 @@ const MainNavigation = (props) => {
         </NavLink>
       </div>
       <ul>
-        <li className={activePage === "Home" && styles.active}>
+        <li className={location.pathname === "/" && styles.active}>
           <NavLink
             to="/"
             className={(navData) => (navData.isActive ? styles.active : "")}
-            onClick={() => {
-              setActivePage("Home");
-            }}
+            onClick={() => {}}
           >
-            Home
-          </NavLink>
-        </li>
-        <li className={activePage === "Menu" && styles.active}>
-          <NavLink
-            to="/menu"
-            className={(navData) => (navData.isActive ? styles.active : "")}
-            onClick={() => {
-              setActivePage("Menu");
-            }}
-          >
-            Menu
+            HOME
           </NavLink>
         </li>
         <li
-          className={`${styles.cart}`}
-          onClick={() => {
-            setActivePage("Koszyk");
-          }}
+          ref={ref}
+          className={location.pathname === "/menu" && styles.active}
+        >
+          <NavLink
+            to="/menu"
+            className={(navData) => (navData.isActive ? styles.active : "")}
+            onClick={() => {}}
+          >
+            MENU
+          </NavLink>
+        </li>
+        <li
+          className={`${styles.cart} ${!onScreen && styles.invisible}`}
+          onClick={() => {}}
         >
           <i
             className="fas fa-shopping-cart"
             type="button"
             onClick={props.showModal}
           >
-            Koszyk ({cartCtx.numberOfItems})
+            KOSZYK
           </i>
+          <div className={styles.cartitems}> {cartCtx.numberOfItems}</div>
           <div className={styles.tooltip}>
-            Cena: {cartCtx.totalAmount.toFixed(2)}
+            CENA: {cartCtx.totalAmount.toFixed(2)}
             <br />
           </div>
         </li>
@@ -83,5 +83,28 @@ const MainNavigation = (props) => {
     </nav>
   );
 };
+
+function useOnScreen(ref, rootMargin = "0px") {
+  // State and setter for storing whether element is visible
+  const [isIntersecting, setIntersecting] = useState(false);
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        // Update our state when observer callback fires
+        setIntersecting(entry.isIntersecting);
+      },
+      {
+        rootMargin,
+      }
+    );
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+    return () => {
+      observer.unobserve(ref.current);
+    };
+  }, []); // Empty array ensures that effect is only run on mount and unmount
+  return isIntersecting;
+}
 
 export default MainNavigation;

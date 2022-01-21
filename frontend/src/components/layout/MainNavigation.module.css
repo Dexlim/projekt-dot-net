@@ -68,6 +68,22 @@
   cursor:pointer;
 }
 
+
+.cart.invisible{
+    position:fixed;
+    top: -2rem;
+    right: 1vw;
+    cursor:pointer;
+    background-color: rgb(200, 16, 43);
+    box-shadow:  0 4px 9px 2px rgba(0,0,0,0.45);
+    color: white;
+    z-index: 999;
+}
+
+.cart.invisible:hover{
+animation-name: none;
+}
+
 .tooltip {
   visibility: hidden;
   width: auto;
@@ -78,8 +94,58 @@
   font-size: small;
 
 }
+.cart.invisible .tooltip{
+  visibility:visible;
+}
+.cart.invisible .cartitems{
+  visibility: visible;
+  left: 6.5rem;
+  box-shadow: 0 0 3px 2px rgba(0,0,0,0.25);
+}
+
 .cart:hover .tooltip {
   visibility: visible;
 }
 
+.cartitems {
+  visibility: visible;
+  width: auto;
+  background-color: rgb(200, 16, 43);
+  color: #fff;
+  text-align: center;
+  padding: 0.2rem 0.4rem;
+  border-radius: 50%;
+  position: absolute;
+  top: -0.0rem;
+  left: 6rem;
+  z-index: 1;
+}
 
+.cart:hover .cartitems {
+  visibility: visible;
+  left: 6.5rem;
+  box-shadow: 0 0 3px 2px rgba(0,0,0,0.25);
+}
+
+@media only screen and (max-width:900px){
+  .cart.invisible{
+    position:fixed;
+    top: -3.2rem;
+    right: -1.5rem;
+    cursor:pointer;
+    background-color: rgb(200, 16, 43);
+    box-shadow:  0 4px 9px 2px rgba(0,0,0,0.45);
+    color: white;
+    transform: scale(0.5);
+}
+
+.tooltip {
+  visibility: hidden;
+  width: auto;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  font-size: small;
+}
+}

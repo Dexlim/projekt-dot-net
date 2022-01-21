@@ -1,24 +1,11 @@
-import { Fragment } from "react";
+import React, { Fragment,useState } from "react";
 import MealItem from "./PizzaList";
-
-const mealsList = [
-  {
-    "pizzaId": 1,
-    "pizzaName": "Neapolitana",
-    "description": "Super pizza",
-    "price": 10.2,
-    "pictureUrl": "https://rukola.com.pl/uploads/imgs/thumb/8rgPPh3YUU_nachos.jpg"
-  },
-  {
-    "pizzaId": 2,
-    "pizzaName": "Bonapartiana",
-    "description": "Fajna pizza",
-    "price": 42.0,
-    "pictureUrl": "https://rukola.com.pl/uploads/imgs/thumb/chorizo.jpg"
-  },
-];
-
+import styles from "./MealsList.module.css";
+import AddToCartModal from "./AddToCartModal";
+import mealsList from "./placeholderMeals";
+import CategoryNav from "./CategoryNav";
 const MealsList = () => {
+  const [filter,setFilter] = useState("Pizza");
   // const [mealsList, setMealsList] = useState();
 
   // async function fetchData() {
@@ -40,22 +27,30 @@ const MealsList = () => {
   // useEffect(() => {
   //   fetchData();
   // }, []);
+  const filterChangeHandler = (param) =>{
+    setFilter(param);
+    console.log(param);
+  }
 
   return (
-    <Fragment>
-      {mealsList &&
-        mealsList.map((meal) => (
-          <MealItem
-            key={meal.pizzaId}
-            id={meal.pizzaId}
-            name={meal.pizzaName}
-            description={meal.description}
-            price={meal.price}
-            imgUrl={meal.pictureUrl}
-          />
-        ))}
-      {!mealsList && <p>Menu jest aktualnie puste.</p>}
-    </Fragment>
+    <div className={styles.menu}>
+      <CategoryNav filterChange={filterChangeHandler}/>
+      <ul className={styles.mealscard}>
+        {mealsList &&
+          mealsList.filter(meal=>meal.productType === filter).map((meal) => (
+            <MealItem
+              key={meal.pizzaId}
+              id={meal.productId}
+              name={meal.productName}
+              type={meal.productType}
+              description={meal.description}
+              price={meal.price}
+              imgUrl={meal.pictureUrl}
+            />
+          ))}
+        {!mealsList && <p>Menu jest aktualnie puste.</p>}
+      </ul>
+    </div>
   );
 };
 
