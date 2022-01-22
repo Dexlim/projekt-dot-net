@@ -75,6 +75,10 @@
     cursor:pointer;
 }
 
+.pizzalist .btn i:hover{
+    color:rgb(200, 16, 43);
+}
+
 @media only screen and (max-width: 900px){
     .pizzalist img{
         width: 15vw;

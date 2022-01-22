@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect,useCallback } from "react";
 
 const CartContext = React.createContext({
   items: [],
@@ -10,6 +10,9 @@ const CartContext = React.createContext({
 });
 
 export const CartContextProvider = (props) => {
+  
+
+
   const [itemsList, setItemsList] = useState([]);
   const [totalAmount, setTotalAmount] = useState(0);
   const [numberOfItems, setNumberOfItems] = useState(0);

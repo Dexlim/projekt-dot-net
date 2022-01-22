@@ -64,12 +64,12 @@ const MainNavigation = (props) => {
         </li>
         <li
           className={`${styles.cart} ${!onScreen && styles.invisible}`}
-          onClick={() => {}}
+          onClick={props.showModal}
         >
           <i
             className="fas fa-shopping-cart"
             type="button"
-            onClick={props.showModal}
+
           >
             KOSZYK
           </i>

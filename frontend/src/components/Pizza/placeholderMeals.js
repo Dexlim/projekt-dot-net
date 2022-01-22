@@ -180,7 +180,7 @@ const mealsList = [
         "productName": "Dodatkowy sos",
         "productType": "Dodatki",
         "description": "Do wyboru: czosnkowy, pomidorowy, tzatziki, chili, tysiąca wysp, BBQ, ketchup",
-        "price": 3.99,
+        "price": 1.99,
         "pictureUrl": "https://1.bp.blogspot.com/-eGLSFr1Smmk/YIZ76xUlhTI/AAAAAAAASYU/DF_LwyH9Ibcuu7JCvYKtyvS6QQJTDLw2QCPcBGAYYCw/s800/3%2Bsosy%2Bna%2Bimprez%25C4%2599%2Bi%2Bdo%2Bgrilla%2B-%2Bzrobisz%2Bje%2Bw%2Bkilka%2Bminut%2B%25281%2529.JPG"
       },
       {

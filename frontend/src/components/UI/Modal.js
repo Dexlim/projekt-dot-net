@@ -19,6 +19,13 @@ const ModalOverlay = (props) => {
 const portalElement = document.getElementById("overlays");
 
 const Modal = (props) => {
+
+  document.onkeydown = function (evt) {
+    if (evt.key === 'Escape') {
+        props.onClose();
+    }
+};
+
   return (
     <Fragment>
       {ReactDOM.createPortal(
