@@ -49,8 +49,36 @@ export const CartContextProvider = (props) => {
     setTotalAmount(0);
   };
 
-  const removeItemFromCartHandler = (id) => {
-    console.log("usuwanie");
+  const removeItemFromCartHandler = (item) => {
+    const updatedTotalAmount = totalAmount - item.price;
+
+    const existingPizzaIndex = itemsList.findIndex(
+      (pizza) => pizza.id === item.id
+    );
+
+    let updatedItems = [...itemsList];
+
+    const existingPizzaItem = itemsList[existingPizzaIndex];
+
+    if (!existingPizzaItem) {
+      updatedItems.pop(item);
+    } else {
+      const updatedPizza = {
+        ...existingPizzaItem,
+        amount: existingPizzaItem.amount - item.amount,
+      };
+      if(updatedPizza.amount<=0)
+      {
+            updatedItems.splice(existingPizzaIndex,1);
+      }
+      else{
+        updatedItems[existingPizzaIndex] = updatedPizza;
+      }
+    }
+
+    setNumberOfItems((prev) => (prev -= item.amount));
+    setItemsList(updatedItems);
+    setTotalAmount(updatedTotalAmount);
   };
 
   const cartContext = {

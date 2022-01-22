@@ -14,6 +14,8 @@ const MainNavigation = (props) => {
   const onScreen = useOnScreen(ref, "0px");
   const btnClasses = `${styles.button} ${btnIsHighlighted ? styles.bump : ""}`;
   const location = useLocation();
+  const [cartOpen,setCartOpen] = useState(false);
+
 
   useEffect(() => {
     if (cartCtx.items.length === 0) {
@@ -41,7 +43,7 @@ const MainNavigation = (props) => {
         </NavLink>
       </div>
       <ul>
-        <li className={location.pathname === "/" && styles.active}>
+        <li className={location.pathname === "/" ? styles.active : ""}>
           <NavLink
             to="/"
             className={(navData) => (navData.isActive ? styles.active : "")}
@@ -52,7 +54,7 @@ const MainNavigation = (props) => {
         </li>
         <li
           ref={ref}
-          className={location.pathname === "/menu" && styles.active}
+          className={location.pathname === "/menu" ? styles.active : ""}
         >
           <NavLink
             to="/menu"
@@ -63,7 +65,7 @@ const MainNavigation = (props) => {
           </NavLink>
         </li>
         <li
-          className={`${styles.cart} ${!onScreen && styles.invisible}`}
+          className={`${styles.cart} ${!onScreen ? styles.invisible : ""}`}
           onClick={props.showModal}
         >
           <i

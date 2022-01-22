@@ -17,8 +17,9 @@ const Cart = (props) => {
         X
       </button>
       <Order closeModal={props.onClose} />
-      <Link to="/zamowienie" onClick={props.closeModal}>
-        Złóż zamówienie
+      <br/>
+      <Link to="/zamowienie" onClick={props.closeModal} className={styles.order}>
+        <i className={"fas fa-wallet"}/> Przejdź do zamówienia
       </Link>
     </Fragment>
   );

@@ -39,7 +39,7 @@ const MealsList = () => {
         {mealsList &&
           mealsList.filter(meal=>meal.productType === filter).map((meal) => (
             <MealItem
-              key={meal.pizzaId}
+              key={meal.productId}
               id={meal.productId}
               name={meal.productName}
               type={meal.productType}

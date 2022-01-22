@@ -2,7 +2,7 @@ import { useContext } from "react";
 import CartContext from "../../store/cart-context";
 import { Fragment } from "react/cjs/react.production.min";
 
-import CartItem from "./OrderItem";
+import OrderItem from "./OrderItem";
 
 import styles from "./Order.module.css";
 
@@ -11,13 +11,13 @@ const Order = (props) => {
 
   return (
     <Fragment>
-      <h2>Podsumowanie zamówienia</h2>
-      <ul>
+      <h2 className={styles.label}>Koszyk</h2>
+      <ul className={styles.orderlist}>
         {cartCtx.items.map((item) => (
-          <CartItem key={item.id} item={item} />
+          <OrderItem key={item.id} item={item} />
         ))}
       </ul>
-      <p>Wartosc koszyka: {cartCtx.totalAmount} zł</p>
+      <br/><p>Łączna suma: {cartCtx.totalAmount.toFixed(2)} zł</p>
       <button onClick={cartCtx.clearItemsList}>Wyczyść koszyk</button>
     </Fragment>
   );

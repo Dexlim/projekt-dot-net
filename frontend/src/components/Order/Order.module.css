@@ -1,8 +1,22 @@
 button {
-  transition: 0.4s;
+  border-color: white;
+  color: white;
+  background-color: rgb(200,16,43);
+  margin-left:20%;
+  margin-top: 1rem;
 }
 
 button:hover {
-  background-color: darkred;
-  color: white;
+  border-color: rgb(200, 16, 43);
+  color: rgb(200, 16, 43);
+  background-color: white;
+}
+
+.label
+{
+  text-align: center;
+}
+
+.orderlist{
+  line-height: 1.2;
 }

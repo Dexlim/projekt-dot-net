@@ -17,7 +17,7 @@ const MealItem = (props) => {
   };
 
   return (
-    <li className={styles.pizzalist}>
+    <li key={props.id} className={styles.pizzalist}>
       <img src={props.imgUrl} />
       <div className={styles.pizzatext}>
       <h2>{props.name}</h2>
@@ -27,8 +27,6 @@ const MealItem = (props) => {
         {props.price} zł
         <i onClick={submitHandler} className="fas fa-plus"></i>
       </div>
-
-
     </li>
   );
 };

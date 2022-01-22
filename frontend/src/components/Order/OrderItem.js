@@ -1,9 +1,21 @@
+import styles from "./OrderItem.module.css";
+import CartContext from "../../store/cart-context";
+import {useContext} from 'react';
+
 const OrderItem = (props) => {
+const cartCtx = useContext(CartContext);
+
   return (
-    <li>
-      <h3>{props.item.name}</h3>
-      <p>liczba: {props.item.amount}</p>
-      <p>cena: {props.item.amount * props.item.price}zł</p>
+    <li key={props.id}>
+      <div className={styles.container}>
+      <div className={styles.amount}>{props.item.amount}</div>
+      <div className={styles.name}>{props.item.name}</div>
+      <div className={styles.price}>{(props.item.amount*props.item.price).toFixed(2)}zł</div>
+      </div>
+      <div className={styles.control}>
+        <button onClick={()=>{cartCtx.removeItem({...props.item,amount: 1})}}>-</button>
+        <button onClick={()=>{cartCtx.addItem({...props.item,amount: 1})}}>+</button>
+      </div>
     </li>
   );
 };
