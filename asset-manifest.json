@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/projekt-dot-net/static/css/main.34055c5a.css",
-    "main.js": "/projekt-dot-net/static/js/main.8735aece.js",
+    "main.js": "/projekt-dot-net/static/js/main.a13f5a96.js",
     "static/css/876.bdfb78bc.chunk.css": "/projekt-dot-net/static/css/876.bdfb78bc.chunk.css",
     "static/js/876.cc0dc4ed.chunk.js": "/projekt-dot-net/static/js/876.cc0dc4ed.chunk.js",
     "static/css/836.2fbc6f2c.chunk.css": "/projekt-dot-net/static/css/836.2fbc6f2c.chunk.css",
@@ -14,7 +14,7 @@
     "static/media/logo.png": "/projekt-dot-net/static/media/logo.d7104221c21b20ae8757.png",
     "index.html": "/projekt-dot-net/index.html",
     "main.34055c5a.css.map": "/projekt-dot-net/static/css/main.34055c5a.css.map",
-    "main.8735aece.js.map": "/projekt-dot-net/static/js/main.8735aece.js.map",
+    "main.a13f5a96.js.map": "/projekt-dot-net/static/js/main.a13f5a96.js.map",
     "876.bdfb78bc.chunk.css.map": "/projekt-dot-net/static/css/876.bdfb78bc.chunk.css.map",
     "876.cc0dc4ed.chunk.js.map": "/projekt-dot-net/static/js/876.cc0dc4ed.chunk.js.map",
     "836.2fbc6f2c.chunk.css.map": "/projekt-dot-net/static/css/836.2fbc6f2c.chunk.css.map",
@@ -26,6 +26,6 @@
   },
   "entrypoints": [
     "static/css/main.34055c5a.css",
-    "static/js/main.8735aece.js"
+    "static/js/main.a13f5a96.js"
   ]
 }
