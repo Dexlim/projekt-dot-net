@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 
 
 import "./index.css";
@@ -10,9 +10,9 @@ import { CartContextProvider } from "./store/cart-context";
 
 ReactDOM.render(
   <CartContextProvider>
-    <BrowserRouter>
+    <HashRouter>
       <App />
-    </BrowserRouter>
+    </HashRouter>
   </CartContextProvider>,
   document.getElementById("root")
 );

@@ -8,7 +8,7 @@ const Map = () => {
     <section className={styles["home-page"]}>
       <div className={styles.descriptions}>
         <Description label="O NAS">
-          Zale(w)scy Pizza jest fikcjonalną firmą utworzoną w 2022 roku na
+          Zale(w)scy Pizza jest fikcyjną firmą utworzoną w 2022 roku na
           potrzeby zaliczenia projektu z przedmiotu "Metody programowania .NET".
           Nasza firma oferuje szeroki wachlarz potraw, które zadowolą nawet
           największego niejadka. Nasz lokal znajduje się tuż przy Wojskowej
