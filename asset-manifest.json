@@ -1,0 +1,31 @@
+{
+  "files": {
+    "main.css": "/react-gh-pages/static/css/main.3b30bb0e.css",
+    "main.js": "/react-gh-pages/static/js/main.d849ab94.js",
+    "static/css/876.bdfb78bc.chunk.css": "/react-gh-pages/static/css/876.bdfb78bc.chunk.css",
+    "static/js/876.cc0dc4ed.chunk.js": "/react-gh-pages/static/js/876.cc0dc4ed.chunk.js",
+    "static/css/836.2fbc6f2c.chunk.css": "/react-gh-pages/static/css/836.2fbc6f2c.chunk.css",
+    "static/js/836.b2c1e31d.chunk.js": "/react-gh-pages/static/js/836.b2c1e31d.chunk.js",
+    "static/css/902.92e7490c.chunk.css": "/react-gh-pages/static/css/902.92e7490c.chunk.css",
+    "static/js/902.ccf0ee37.chunk.js": "/react-gh-pages/static/js/902.ccf0ee37.chunk.js",
+    "static/js/922.5ce96612.chunk.js": "/react-gh-pages/static/js/922.5ce96612.chunk.js",
+    "static/js/454.c98d9aa9.chunk.js": "/react-gh-pages/static/js/454.c98d9aa9.chunk.js",
+    "static/media/background.png": "/react-gh-pages/static/media/background.cfa24d7db64a45b1c24d.png",
+    "static/media/logo.png": "/react-gh-pages/static/media/logo.d7104221c21b20ae8757.png",
+    "index.html": "/react-gh-pages/index.html",
+    "main.3b30bb0e.css.map": "/react-gh-pages/static/css/main.3b30bb0e.css.map",
+    "main.d849ab94.js.map": "/react-gh-pages/static/js/main.d849ab94.js.map",
+    "876.bdfb78bc.chunk.css.map": "/react-gh-pages/static/css/876.bdfb78bc.chunk.css.map",
+    "876.cc0dc4ed.chunk.js.map": "/react-gh-pages/static/js/876.cc0dc4ed.chunk.js.map",
+    "836.2fbc6f2c.chunk.css.map": "/react-gh-pages/static/css/836.2fbc6f2c.chunk.css.map",
+    "836.b2c1e31d.chunk.js.map": "/react-gh-pages/static/js/836.b2c1e31d.chunk.js.map",
+    "902.92e7490c.chunk.css.map": "/react-gh-pages/static/css/902.92e7490c.chunk.css.map",
+    "902.ccf0ee37.chunk.js.map": "/react-gh-pages/static/js/902.ccf0ee37.chunk.js.map",
+    "922.5ce96612.chunk.js.map": "/react-gh-pages/static/js/922.5ce96612.chunk.js.map",
+    "454.c98d9aa9.chunk.js.map": "/react-gh-pages/static/js/454.c98d9aa9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3b30bb0e.css",
+    "static/js/main.d849ab94.js"
+  ]
+}
