@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import CartContext from "../../store/cart-context";
-import { Fragment } from "react/cjs/react.production.min";
 import { NavLink } from "react-router-dom";
 
 import OrderItem from "./OrderItem";
