@@ -3,6 +3,7 @@ import { useContext } from "react";
 
 import CartContext from "../../store/cart-context";
 
+import styles from "./OrderSummary.module.css";
 import Form from "../UI/Form";
 import Order from "./Order";
 import EmptyOrder from "./EmptyOrder";
@@ -12,10 +13,12 @@ const OrderSummary = () => {
 
   const Summary = () => {
     return (
-      <>
+      <div className={styles.summary}>
         <Form />
-        <Order />
-      </>
+        <div className={styles.order}>
+        <Order/>
+        </div>
+      </div>
     );
   };
 

@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import CartContext from "../../store/cart-context";
 import { Fragment } from "react/cjs/react.production.min";
+import { NavLink } from "react-router-dom";
 
 import OrderItem from "./OrderItem";
 
@@ -10,7 +11,7 @@ const Order = (props) => {
   const cartCtx = useContext(CartContext);
 
   return (
-    <Fragment>
+    <div className={styles.order}>
       <h2 className={styles.label}>Koszyk</h2>
       <ul className={styles.orderlist}>
         {cartCtx.items.map((item) => (
@@ -18,8 +19,14 @@ const Order = (props) => {
         ))}
       </ul>
       <br/><p>Łączna suma: {cartCtx.totalAmount.toFixed(2)} zł</p>
-      <button onClick={cartCtx.clearItemsList}>Wyczyść koszyk</button>
-    </Fragment>
+      <NavLink
+            to="/menu"
+            className={styles.submit}
+            onClick={cartCtx.clearItemsList}
+          >
+            Wyczyśc koszyk
+          </NavLink>
+    </div>
   );
 };
 

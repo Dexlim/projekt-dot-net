@@ -1,4 +1,61 @@
-.form div {
-  display: flex;
-  flex-direction: column;
+.form{
+    display: flex;
+    flex-direction: column;
+    background-color: #292525f5;
+    border-radius: 5vw;
+    width: 60%;
+    height: fit-content;
+    margin-left: 2rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    color: white;
+    justify-content: space-between;
+    box-shadow: inset 0 0 8px 4px rgba(0,0,0,0.45);
+  }
+
+.form div{
+  display:flex;
+  flex-direction: row;
+  margin-top: 1rem;
+  justify-content: space-between;
+}
+
+.form div label{
+  margin-left: 5%;
+}
+
+.form div input{
+  margin-right: 1rem;
+  border-radius: 10px;
+  line-height: 1.6;
+  width:50%;
+}
+
+.submit{
+  width:80%;
+  margin-right:20%;
+  
+}
+
+.form .controlgroup{
+  display:flex;
+  flex-direction: row-reverse;
+}
+
+.form input:focus{
+  transform: scale(1.25) translateX(-2rem);
+  box-shadow: 0 0 12px 10px rgba(0,0,0,0.45);
+  transition: 0.4s;
+}
+
+.form input:focus + label {
+  color: rgb(200, 16, 43);
+}
+
+@media only screen and (max-width: 800px){
+  .form{
+    width: 80%;
+    margin-left:10%;
+  }
+
 }

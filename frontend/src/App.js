@@ -11,7 +11,6 @@ const NotFound = React.lazy(() => import("./pages/NotFound"));
 
 function App() {
 
-
   return (
     <Layout>
       <Suspense

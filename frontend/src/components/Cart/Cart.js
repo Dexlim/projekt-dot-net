@@ -26,7 +26,7 @@ const Cart = (props) => {
 
   const orderIsEmpty = (
     <Fragment>
-      <p>Twój koszyk jest aktaulnie pusty.</p>
+      <div className={styles.emptycart}>Twój koszyk jest aktaulnie pusty.</div>
     </Fragment>
   );
 

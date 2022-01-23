@@ -3,39 +3,41 @@ import styles from "./Form.module.css";
 const Form = () => {
   return (
     <form className={styles.form}>
-      <div>
+      <div className={styles.controlgroup}>
+        <input id="name" type="text" placeholder="Imię" />
         <label forhtml="name">Imię</label>
-        <input id="name" type="text" />
       </div>
-      <div>
+      <div className={styles.controlgroup}>
+        <input id="surname" type="text" placeholder="Nazwisko"/>
         <label forhtml="surname">Nazwisko</label>
-        <input id="surname" type="text" />
       </div>
-      <div>
+      <div className={styles.controlgroup}> 
+        <input id="email" type="email" placeholder="Adres e-mail"/>
         <label forhtml="email">Adres e-mail</label>
-        <input id="email" type="email" />
       </div>
-      <div>
+      <div className={styles.controlgroup}>
+        <input id="phone" type="text" placeholder="Telefon" />
         <label forhtml="phone">Telefon</label>
-        <input id="phone" type="text" />
       </div>
-      <div>
+      <div className={styles.controlgroup}>
+        <input id="street" type="text" placeholder="Nazwa ulicy"/>
         <label forhtml="street">Nazwa ulicy</label>
-        <input id="street" type="text" />
       </div>
-      <div>
+      <div className={styles.controlgroup}>
+        <input id="building" type="text" placeholder="Numer budynku" />
         <label forhtml="building">Numer budynku</label>
-        <input id="building" type="text" />
       </div>
-      <div>
+      <div className={styles.controlgroup}>
+        <input id="flat" type="text" placeholder="Numer mieszkania" />
         <label forhtml="flat">Numer mieszkania</label>
-        <input id="flat" type="text" />
+      </div>
+      <div className={styles.controlgroup}>
+        <input id="postalcode" type="text" placeholder="Kod pocztowy"/>
+        <label forhtml="postalcode">Kod pocztowy</label>
       </div>
       <div>
-        <label forhtml="postalcode">Kod pocztowy</label>
-        <input id="postalcode" type="text" />
+      <button className={styles.submit} type="submit">Złóż zamówienie</button>
       </div>
-      <button type="submit">Złóż zamówienie</button>
     </form>
   );
 };
