@@ -1,36 +1,18 @@
 import { NavLink } from "react-router-dom";
 import { useState, useEffect, useContext, useRef } from "react";
-import CartContext from "../../store/cart-context";
 import { useLocation } from "react-router-dom";
 
-import styles from "./MainNavigation.module.css";
+import CartContext from "../../store/cart-context";
 
 import logo from "../../images/logo.png";
 
+import styles from "./MainNavigation.module.css";
+
 const MainNavigation = (props) => {
-  const [btnIsHighlighted, setBtnIsHighlighted] = useState(false);
   const cartCtx = useContext(CartContext);
+  const location = useLocation();
   const ref = useRef();
   const onScreen = useOnScreen(ref, "0px");
-  const btnClasses = `${styles.button} ${btnIsHighlighted ? styles.bump : ""}`;
-  const location = useLocation();
-  const [cartOpen,setCartOpen] = useState(false);
-
-
-  useEffect(() => {
-    if (cartCtx.items.length === 0) {
-      return;
-    }
-    setBtnIsHighlighted(true);
-
-    const timer = setTimeout(() => {
-      setBtnIsHighlighted(false);
-    }, 300);
-
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [cartCtx.items]);
 
   return (
     <nav className={styles.navigation}>
@@ -105,6 +87,7 @@ function useOnScreen(ref, rootMargin = "0px") {
     return () => {
       observer.unobserve(ref.current);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); // Empty array ensures that effect is only run on mount and unmount
   return isIntersecting;
 }

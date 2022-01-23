@@ -1,6 +1,8 @@
-import styles from "./OrderItem.module.css";
-import CartContext from "../../store/cart-context";
 import {useContext} from 'react';
+
+import CartContext from "../../store/cart-context";
+
+import styles from "./OrderItem.module.css";
 
 const OrderItem = (props) => {
 const cartCtx = useContext(CartContext);

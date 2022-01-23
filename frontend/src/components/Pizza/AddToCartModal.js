@@ -1,7 +1,7 @@
-import styles from "./AddToCartModal.module.css";
+import { Fragment } from "react/cjs/react.production.min";
 import ReactDOM from "react-dom";
 
-import { Fragment } from "react/cjs/react.production.min";
+import styles from "./AddToCartModal.module.css";
 
 const Backdrop = (props) => {
     return <div className={styles.backdrop} onClick={props.onClose} />}

@@ -1,5 +1,5 @@
 .home-page {
-  display:flex;
+  display: flex;
   flex-flow: row;
   background-color: #292525f5;
   border-radius: 5vw;
@@ -8,45 +8,38 @@
   margin-top: 5%;
   color: white;
 }
-.descriptions{
-  width:100%;
+.descriptions {
+  width: 100%;
 }
 
-.descriptions b{
-  font-size:x-large;
+.descriptions b {
+  font-size: x-large;
 }
 
-.map-container{
-  align-items:center;
-  text-align:center;
+.map-container {
+  align-items: center;
+  text-align: center;
   margin-left: 5%;
   margin-top: 5%;
   margin-right: 5%;
 }
 .map {
   width: 35vw;
-  height: 35vw;
+  height: 90%;
   margin-top: 2%;
   margin-bottom: 5%;
   z-index: 0;
 }
 
-@media only screen and (max-width: 900px){
-    .home-page{
-      display:flex;
-      flex-direction: column;
-      background-color: #292525f5;
-      border-radius: 5vw;
-      width: 90%;
-      margin-left: 5%;
-      margin-top: 5%;
-      color: white;
-      align-items:center;
-    }
-    .map {
-      width: 35vh;
-      height: 35vh;
-      margin-top: 2%;
-      margin-bottom: 5%;
-    }
+@media only screen and (max-width: 900px) {
+  .home-page {
+    flex-direction: column;
+    width: 90%;
+    margin-left: 5%;
+    align-items: center;
+  }
+  .map {
+    width: 80vw;
+    height: 35vh;
+  }
 }

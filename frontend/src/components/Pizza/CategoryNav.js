@@ -1,5 +1,6 @@
-import styles from "./CategoryNav.module.css";
 import {useState} from 'react';
+
+import styles from "./CategoryNav.module.css";
 
 const CategoryNav = (props) => {
   const [optionChosen,setOptionChosen] = useState("Pizza");

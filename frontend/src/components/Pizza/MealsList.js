@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
+
 import MealItem from "./PizzaList";
-import styles from "./MealsList.module.css";
 // import mealsList from "./placeholderMeals";
 import CategoryNav from "./CategoryNav";
+
+import styles from "./MealsList.module.css";
 
 const MealsList = () => {
   const [filter, setFilter] = useState("Pizza");

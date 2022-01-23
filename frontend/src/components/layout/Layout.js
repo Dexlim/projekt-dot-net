@@ -1,10 +1,10 @@
 import { Fragment, useState } from "react";
-import styles from "./Layout.module.css";
-
 
 import Cart from "../Cart/Cart";
 import MainNavigation from "./MainNavigation";
 import Footer from "./Footer";
+
+import styles from "./Layout.module.css";
 
 const Layout = (props) => {
   const [showModal, setShowModal] = useState(false);

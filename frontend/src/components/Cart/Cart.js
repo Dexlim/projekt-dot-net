@@ -1,12 +1,12 @@
-import { useContext } from "react";
+import { Fragment, useContext } from "react";
+import { Link } from "react-router-dom";
+
 import CartContext from "../../store/cart-context";
 
 import Modal from "../UI/Modal";
+import Order from "../Order/Order";
 
 import styles from "./Cart.module.css";
-import Order from "../Order/Order";
-import { Link } from "react-router-dom";
-import { Fragment } from "react";
 
 const Cart = (props) => {
   const cartCtx = useContext(CartContext);
@@ -26,7 +26,7 @@ const Cart = (props) => {
 
   const orderIsEmpty = (
     <Fragment>
-      <div className={styles.emptycart}>Twój koszyk jest aktaulnie pusty.</div>
+      <div className={styles.emptycart}>Twój koszyk jest aktualnie pusty.</div>
     </Fragment>
   );
 

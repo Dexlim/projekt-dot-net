@@ -3,10 +3,11 @@ import { useContext } from "react";
 
 import CartContext from "../../store/cart-context";
 
-import styles from "./OrderSummary.module.css";
 import Form from "../UI/Form";
 import Order from "./Order";
 import EmptyOrder from "./EmptyOrder";
+
+import styles from "./OrderSummary.module.css";
 
 const OrderSummary = () => {
   const cartCtx = useContext(CartContext);

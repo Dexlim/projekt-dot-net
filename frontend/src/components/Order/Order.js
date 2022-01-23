@@ -1,6 +1,7 @@
 import { useContext } from "react";
-import CartContext from "../../store/cart-context";
 import { NavLink } from "react-router-dom";
+
+import CartContext from "../../store/cart-context";
 
 import OrderItem from "./OrderItem";
 
@@ -17,14 +18,15 @@ const Order = (props) => {
           <OrderItem key={item.id} item={item} />
         ))}
       </ul>
-      <br/><p>Łączna suma: {cartCtx.totalAmount.toFixed(2)} zł</p>
+      <br />
+      <p>Łączna suma: {cartCtx.totalAmount.toFixed(2)} zł</p>
       <NavLink
-            to="/menu"
-            className={styles.submit}
-            onClick={cartCtx.clearItemsList}
-          >
-            Wyczyśc koszyk
-          </NavLink>
+        to="/menu"
+        className={styles.submit}
+        onClick={cartCtx.clearItemsList}
+      >
+        Wyczyść koszyk
+      </NavLink>
     </div>
   );
 };

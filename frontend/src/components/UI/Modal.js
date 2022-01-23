@@ -1,5 +1,4 @@
 import ReactDOM from "react-dom";
-
 import { Fragment } from "react/cjs/react.production.min";
 
 import styles from "./Modal.module.css";
