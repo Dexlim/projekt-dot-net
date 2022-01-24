@@ -15,9 +15,31 @@ const defaultEnteredValues = {
 const Form = () => {
   const [enteredValues, setEnteredValues] = useState(defaultEnteredValues);
 
+  async function fetchData() {
+    try {
+      const result = await fetch("http://localhost:32520/api/Customers", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(enteredValues),
+      });
+
+      if (!result.ok) {
+        throw new Error();
+      }
+
+      const promiseData = await result.json();
+      console.log(promiseData);
+    } catch (e) {
+      console.log(e.message);
+    }
+  }
+
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log(enteredValues.firstName);
+    console.log(enteredValues);
+    fetchData();
   };
 
   const onChangeHandler = (e) => {
@@ -100,6 +122,7 @@ const Form = () => {
           id="postalCode"
           type="text"
           placeholder="Kod pocztowy"
+          pattern="[0-9]{2}[-][0-9]{3}"
           onChange={onChangeHandler}
           required
         />
