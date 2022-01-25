@@ -1,8 +1,11 @@
+import { useContext, useState } from "react";
+
+import CartContext from "../../store/cart-context";
+
 import styles from "./Form.module.css";
-import { useState } from "react";
 
 const defaultEnteredValues = {
-  firstName: "KASIA",
+  firstName: "",
   secondName: "",
   email: "",
   phoneNumber: "",
@@ -15,14 +18,29 @@ const defaultEnteredValues = {
 const Form = () => {
   const [enteredValues, setEnteredValues] = useState(defaultEnteredValues);
 
+  const cartCtx = useContext(CartContext);
+
   async function fetchData() {
+    const items = cartCtx.items.map((item) => ({
+      productId: item.id,
+      quantity: item.amount,
+      amount: item.price,
+    }));
+
+    const enteredDate = {
+      customer: enteredValues,
+      totalAmount: cartCtx.totalAmount,
+      orderDetails: items,
+    };
+    console.log(enteredDate);
+
     try {
-      const result = await fetch("http://localhost:32520/api/Customers", {
+      const result = await fetch("https://localhost:44376/api/Orders", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(enteredValues),
+        body: JSON.stringify(enteredDate),
       });
 
       if (!result.ok) {
@@ -40,6 +58,8 @@ const Form = () => {
     e.preventDefault();
     console.log(enteredValues);
     fetchData();
+    setEnteredValues(defaultEnteredValues);
+    cartCtx.clearItemsList();
   };
 
   const onChangeHandler = (e) => {

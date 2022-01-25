@@ -9,15 +9,15 @@ using WebApplication.Models;
 namespace WebApplication.Migrations
 {
     [DbContext(typeof(RestaurantDbContext))]
-    [Migration("20220124210929_Add-customer")]
-    partial class Addcustomer
+    [Migration("20220125014444_Initial-migration")]
+    partial class Initialmigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.13")
+                .HasAnnotation("ProductVersion", "5.0.12")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("WebApplication.Models.Customer", b =>
@@ -53,7 +53,55 @@ namespace WebApplication.Migrations
 
                     b.HasKey("CustomerId");
 
-                    b.ToTable("Customer");
+                    b.ToTable("Customers");
+                });
+
+            modelBuilder.Entity("WebApplication.Models.Order", b =>
+                {
+                    b.Property<int>("OrderId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
+
+                    b.Property<float>("TotalAmount")
+                        .HasColumnType("real");
+
+                    b.HasKey("OrderId");
+
+                    b.HasIndex("CustomerId");
+
+                    b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("WebApplication.Models.OrderDetail", b =>
+                {
+                    b.Property<int>("OrderDetailId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<double>("Amount")
+                        .HasColumnType("float");
+
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("OrderDetailId");
+
+                    b.HasIndex("OrderId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("OrderDetails");
                 });
 
             modelBuilder.Entity("WebApplication.Models.Product", b =>
@@ -69,8 +117,8 @@ namespace WebApplication.Migrations
                     b.Property<string>("PictureUrl")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
+                    b.Property<float>("Price")
+                        .HasColumnType("real");
 
                     b.Property<string>("ProductName")
                         .HasColumnType("nvarchar(max)");
@@ -80,41 +128,46 @@ namespace WebApplication.Migrations
 
                     b.HasKey("ProductId");
 
-                    b.ToTable("Product");
+                    b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("WebApplication.Models.Recipe", b =>
+            modelBuilder.Entity("WebApplication.Models.Order", b =>
                 {
-                    b.Property<int>("RecipeId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("IngredientId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.HasKey("RecipeId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("Recipe");
+                    b.HasOne("WebApplication.Models.Customer", null)
+                        .WithMany("Orders")
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
-            modelBuilder.Entity("WebApplication.Models.Recipe", b =>
+            modelBuilder.Entity("WebApplication.Models.OrderDetail", b =>
                 {
+                    b.HasOne("WebApplication.Models.Order", null)
+                        .WithMany("OrderDetails")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("WebApplication.Models.Product", null)
-                        .WithMany("Recipe")
+                        .WithMany("OrderDetails")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("WebApplication.Models.Customer", b =>
+                {
+                    b.Navigation("Orders");
+                });
+
+            modelBuilder.Entity("WebApplication.Models.Order", b =>
+                {
+                    b.Navigation("OrderDetails");
+                });
+
             modelBuilder.Entity("WebApplication.Models.Product", b =>
                 {
-                    b.Navigation("Recipe");
+                    b.Navigation("OrderDetails");
                 });
 #pragma warning restore 612, 618
         }

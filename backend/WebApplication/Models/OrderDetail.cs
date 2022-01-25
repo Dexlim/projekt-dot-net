@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -8,11 +7,14 @@ using System.Threading.Tasks;
 
 namespace WebApplication.Models
 {
-    public class Recipe
+    public class OrderDetail
     {
         [Key]
-        public int RecipeId { get; set; }
+        public int OrderDetailId { get; set; }
         public int ProductId { get; set; }
-        public int IngredientId { get; set;}
+        public Product Product { get; set; }
+        public int OrderId { get; set; }
+        public int Quantity { get; set; }
+        public double Amount { get; set; }
     }
 }

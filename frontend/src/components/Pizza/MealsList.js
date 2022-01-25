@@ -12,7 +12,7 @@ const MealsList = () => {
 
   async function fetchData() {
     try {
-      const response = await fetch("http://localhost:32520/api/Products");
+      const response = await fetch("https://localhost:44376/api/Products");
 
       if (!response.ok) {
         throw new Error();

@@ -22,8 +22,8 @@ const MealItem = (props) => {
     <li key={props.id} className={styles.pizzalist}>
       <img src={props.imgUrl} alt={props.name} />
       <div className={styles.pizzatext}>
-      <h2>{props.name}</h2>
-      <h3>{props.description}</h3>
+        <h2>{props.name}</h2>
+        <h3>{props.description}</h3>
       </div>
       <div className={styles.btn}>
         {props.price} zł

@@ -1,17 +1,18 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using WebApplication.Models;
 
 namespace WebApplication.Models
 {
-    public class RestaurantDbContext:DbContext
+    public class RestaurantDbContext : DbContext
     {
-        public RestaurantDbContext(DbContextOptions<RestaurantDbContext> options):base(options)
+        public RestaurantDbContext(DbContextOptions<RestaurantDbContext> options) : base(options)
         {
 
         }
 
-        public DbSet<Product> Product { get; set; } 
-
-        public DbSet<WebApplication.Models.Customer> Customer { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderDetail> OrderDetails { get; set; }
     }
 }
