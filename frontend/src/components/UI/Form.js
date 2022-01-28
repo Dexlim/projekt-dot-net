@@ -32,8 +32,9 @@ const Form = () => {
       totalAmount: cartCtx.totalAmount,
       orderDetails: items,
     };
-    console.log(enteredDate);
+    console.log(JSON.stringify(enteredDate));
 
+    
     try {
       const result = await fetch("https://localhost:44376/api/Orders", {
         method: "POST",

@@ -54,6 +54,27 @@ namespace WebApplication.Migrations
                     b.ToTable("Customers");
                 });
 
+            modelBuilder.Entity("WebApplication.Models.Ingredient", b =>
+                {
+                    b.Property<int>("IngredientId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("IngredientName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IngredientType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.HasKey("IngredientId");
+
+                    b.ToTable("Ingredients");
+                });
+
             modelBuilder.Entity("WebApplication.Models.Order", b =>
                 {
                     b.Property<int>("OrderId")
@@ -129,49 +150,80 @@ namespace WebApplication.Migrations
                     b.ToTable("Products");
                 });
 
+            modelBuilder.Entity("WebApplication.Models.Recipe", b =>
+                {
+                    b.Property<int>("RecipeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("IngredientId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("RecipeId");
+
+                    b.HasIndex("IngredientId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("Recipes");
+                });
+
             modelBuilder.Entity("WebApplication.Models.Order", b =>
                 {
-                    b.HasOne("WebApplication.Models.Customer", null)
-                        .WithMany("Orders")
+                    b.HasOne("WebApplication.Models.Customer", "Customer")
+                        .WithMany()
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Customer");
                 });
 
-            modelBuilder.Entity<OrderDetail>()
-                .HasOne(x => x.Order)
-                .WithMany(x => x.OrderDetails)
-                .HasForeignKey(x => x.OrderId);
-            modelBuilder.Entity<OrderDetail>()
-                .HasOne(x => x.Product)
-                .WithMany(x => x.OrderDetails)
-                .HasForeignKey(x => x.ProductId);
-
-            modelBuilder.Entity("WebApplication.Models.Customer", b =>
+            modelBuilder.Entity("WebApplication.Models.OrderDetail", b =>
                 {
-                    b.Navigation("Orders");
+                    b.HasOne("WebApplication.Models.Order", null)
+                        .WithMany("OrderDetails")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WebApplication.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("WebApplication.Models.Recipe", b =>
+                {
+                    b.HasOne("WebApplication.Models.Ingredient", "Ingredient")
+                        .WithMany()
+                        .HasForeignKey("IngredientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WebApplication.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Ingredient");
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("WebApplication.Models.Order", b =>
                 {
                     b.Navigation("OrderDetails");
                 });
-
-            modelBuilder.Entity("WebApplication.Models.Product", b =>
-                {
-                    b.Navigation("OrderDetails");
-                });
-
-            modelBuilder.Entity<Recipe>()
-                .HasOne(x => x.Product)
-                .WithMany(x => x.Recipes)
-                .HasForeignKey(x => x.ProductId);
-            modelBuilder.Entity<Recipe>()
-                .HasOne(x => x.Ingredient)
-                .WithMany(x => x.Recipes)
-                .HasForeignKey(x => x.IngredientId);
-
 #pragma warning restore 612, 618
-    }
+        }
     }
 }
