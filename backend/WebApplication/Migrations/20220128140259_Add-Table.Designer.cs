@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApplication.Models;
 
 namespace WebApplication.Migrations
 {
     [DbContext(typeof(RestaurantDbContext))]
-    partial class RestaurantDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220128140259_Add-Table")]
+    partial class AddTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -197,19 +199,6 @@ namespace WebApplication.Migrations
                 {
                     b.Navigation("OrderDetails");
                 });
-
-            modelBuilder.Entity<Recipe>()
-        .HasKey(bc => new { bc.ProductId, bc.IngredientId });
-
-            modelBuilder.Entity<Recipe>()
-            .HasOne(bc => bc.Product)
-            .WithMany(b => b.Recipes)
-        .HasForeignKey(bc => bc.ProductId);
-            modelBuilder.Entity<Recipe>()
-                .HasOne(bc => bc.Ingredient)
-                .WithMany(c => c.Recipes)
-                .HasForeignKey(bc => bc.IngredientId);
-
 #pragma warning restore 612, 618
         }
     }
