@@ -1,38 +1,42 @@
 import React, { useEffect, useState } from "react";
 
 import MealItem from "./PizzaList";
-// import mealsList from "./placeholderMeals";
+import mealsList from "./placeholderMeals";
 import CategoryNav from "./CategoryNav";
+import Extras from "./Extras";
 
 import styles from "./MealsList.module.css";
 
 const MealsList = () => {
   const [filter, setFilter] = useState("Pizza");
-  const [mealsList, setMealsList] = useState();
 
-  async function fetchData() {
-    try {
-      const response = await fetch("https://localhost:44376/api/Products");
 
-      if (!response.ok) {
-        throw new Error();
-      }
+  //const [mealsList, setMealsList] = useState();
 
-      const data = await response.json();
+  // async function fetchData() {
+  //   try {
+  //     const response = await fetch("https://localhost:44376/api/Products");
 
-      setMealsList(data);
-    } catch (e) {
-      console.log(e.message);
-    }
-  }
+  //     if (!response.ok) {
+  //       throw new Error();
+  //     }
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+  //     const data = await response.json();
+
+  //     setMealsList(data);
+  //   } catch (e) {
+  //     console.log(e.message);
+  //   }
+  // }
+
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
 
   const filterChangeHandler = (param) => {
     setFilter(param);
   };
+  
 
   return (
     <div className={styles.menu}>
