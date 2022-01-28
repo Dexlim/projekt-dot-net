@@ -15,7 +15,6 @@ namespace WebApplication.Models
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<Ingredient> Ingredients { get; set; }
-        public DbSet<Size> Sizes { get; set; }
         public DbSet<Recipe> Recipes { get; set; }
     }
 }

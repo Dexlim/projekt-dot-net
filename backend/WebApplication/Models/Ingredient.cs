@@ -10,9 +10,10 @@ namespace WebApplication.Models
 {
     public class Ingredient
     {
+        [Key]
         public int IngredientId { get; set; }
         public string IngredientName { get; set; }
+        public string IngredientType { get; set; }
         public double Price { get; set; }
-        public ICollection<Recipe> Recipes { get; set; }
     }
 }

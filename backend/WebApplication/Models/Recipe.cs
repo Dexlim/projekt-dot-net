@@ -10,6 +10,7 @@ namespace WebApplication.Models
 {
     public class Recipe
     {
+        [Key]
         public int RecipeId { get; set; }
         public int ProductId { get; set; }
         public Product Product { get; set; }

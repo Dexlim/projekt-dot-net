@@ -9,8 +9,8 @@ using WebApplication.Models;
 namespace WebApplication.Migrations
 {
     [DbContext(typeof(RestaurantDbContext))]
-    [Migration("20220125014444_Initial-migration")]
-    partial class Initialmigration
+    [Migration("20220128181523_Init-migration")]
+    partial class Initmigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -54,6 +54,27 @@ namespace WebApplication.Migrations
                     b.HasKey("CustomerId");
 
                     b.ToTable("Customers");
+                });
+
+            modelBuilder.Entity("WebApplication.Models.Ingredient", b =>
+                {
+                    b.Property<int>("IngredientId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("IngredientName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IngredientType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.HasKey("IngredientId");
+
+                    b.ToTable("Ingredients");
                 });
 
             modelBuilder.Entity("WebApplication.Models.Order", b =>
@@ -131,13 +152,37 @@ namespace WebApplication.Migrations
                     b.ToTable("Products");
                 });
 
+            modelBuilder.Entity("WebApplication.Models.Recipe", b =>
+                {
+                    b.Property<int>("RecipeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("IngredientId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("RecipeId");
+
+                    b.HasIndex("IngredientId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("Recipes");
+                });
+
             modelBuilder.Entity("WebApplication.Models.Order", b =>
                 {
-                    b.HasOne("WebApplication.Models.Customer", null)
-                        .WithMany("Orders")
+                    b.HasOne("WebApplication.Models.Customer", "Customer")
+                        .WithMany()
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Customer");
                 });
 
             modelBuilder.Entity("WebApplication.Models.OrderDetail", b =>
@@ -148,24 +193,35 @@ namespace WebApplication.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WebApplication.Models.Product", null)
-                        .WithMany("OrderDetails")
+                    b.HasOne("WebApplication.Models.Product", "Product")
+                        .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("WebApplication.Models.Customer", b =>
+            modelBuilder.Entity("WebApplication.Models.Recipe", b =>
                 {
-                    b.Navigation("Orders");
+                    b.HasOne("WebApplication.Models.Ingredient", "Ingredient")
+                        .WithMany()
+                        .HasForeignKey("IngredientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WebApplication.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Ingredient");
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("WebApplication.Models.Order", b =>
-                {
-                    b.Navigation("OrderDetails");
-                });
-
-            modelBuilder.Entity("WebApplication.Models.Product", b =>
                 {
                     b.Navigation("OrderDetails");
                 });
