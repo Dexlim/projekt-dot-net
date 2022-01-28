@@ -9,7 +9,6 @@ namespace WebApplication.Models
 {
     public class Product
     {
-        [Key]
         public int ProductId { get; set; }
         public string ProductName { get; set; }
         public string ProductType { get; set; }
@@ -17,5 +16,6 @@ namespace WebApplication.Models
         public float Price { get; set; }
         public string PictureUrl { get; set; }
         public ICollection<Recipe> Recipes { get; set; }
+        public ICollection<OrderDetail> OrderDetails { get; set; }
     }
 }

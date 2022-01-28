@@ -8,9 +8,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace WebApplication.Models
 {
-    [Keyless]
     public class Recipe
     {
+        public int RecipeId { get; set; }
         public int ProductId { get; set; }
         public Product Product { get; set; }
         public int IngredientId { get; set; }
