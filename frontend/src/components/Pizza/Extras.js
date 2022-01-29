@@ -15,6 +15,8 @@ const ExtrasModalOverlay = (props) => {
   const [choosenIngredients, setChoosenIngredients] = useState([]);
   const [availableIngredients, setAvailableIngredients] = useState();
 
+  const [ingredientList,setIngredientList] = useState(''); // do wyswietlania w opisie produktu
+
   async function fetchData() {
     try {
       const response = await fetch("https://localhost:44376/api/Ingredients");
@@ -33,6 +35,7 @@ const ExtrasModalOverlay = (props) => {
   useEffect(() => {
     fetchData();
   }, []);
+
 
   const addIngredient = (ingredient) => {
     let updatedIngredients = [...choosenIngredients];
@@ -59,6 +62,11 @@ const ExtrasModalOverlay = (props) => {
 
     setChoosenIngredients(updatedIngredients);
     setClientPizzaPrice((prev) => (prev += ingredient.price));
+    
+    let ingList = updatedIngredients.map(x =>(
+      x.ingredientName + " x" + x.amount + "("+(x.amount*x.price).toFixed(2)+"zł), "
+  )).join("").slice(0,-2);
+    setIngredientList(ingList);
   };
 
   const removeIngredient = (ingredient) => {
@@ -82,6 +90,10 @@ const ExtrasModalOverlay = (props) => {
       }
       setChoosenIngredients(updatedIngredients);
       setClientPizzaPrice((prev) => (prev -= ingredient.price));
+      let ingList = updatedIngredients.map(x =>(
+        x.ingredientName + " x" + x.amount + "("+(x.amount*x.price).toFixed(2)+"zł), "
+    )).join("").slice(0,-2);
+      setIngredientList(ingList);
     }
   };
 
@@ -100,17 +112,26 @@ const ExtrasModalOverlay = (props) => {
   };
 
   const submitHandler = (event) => {
-    event.preventDefault();
+    function dynamicSort(property) {
+      return function(a, b) {
+          return (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
+      }
+   }
+   let submitingredients = choosenIngredients;
+   submitingredients.sort(dynamicSort('ingredientId'));
 
+    event.preventDefault();
     cartCtx.addItem({
       id: props.id,
       name: props.name,
-      price: clientPizzaPrice,
+      price: clientPizzaPrice.toFixed(2),
       amount: itemAmount,
+      extras: submitingredients
     });
 
     props.closeModal();
   };
+
 
   return (
     <div className={styles.extramodal}>
@@ -123,17 +144,13 @@ const ExtrasModalOverlay = (props) => {
         <div className={styles.fooddesc}>
           <h2>{props.name}</h2>
           <p>{props.description}</p>
+          <p><b>Dodatki:</b><br/></p>
+          <p>{ingredientList}</p>
           <h3>Ilość: {itemAmount}</h3>
           <div className={styles.control}>
             <button
               onClick={() => {
                 if (itemAmount > 1) {
-                  cartCtx.removeItem({
-                    id: props.id,
-                    name: props.name,
-                    price: clientPizzaPrice,
-                    amount: 1,
-                  });
                   setItemAmount(itemAmount - 1);
                 }
               }}
@@ -143,12 +160,6 @@ const ExtrasModalOverlay = (props) => {
             <h1>{(itemAmount * clientPizzaPrice).toFixed(2)} zł</h1>
             <button
               onClick={() => {
-                cartCtx.addItem({
-                  id: props.id,
-                  name: props.name,
-                  price: clientPizzaPrice,
-                  amount: 1,
-                });
                 setItemAmount(itemAmount + 1);
               }}
             >
@@ -157,11 +168,13 @@ const ExtrasModalOverlay = (props) => {
           </div>
         </div>
       </div>
+
       <div className={styles["ingredient-list"]}>
+        <h1>Dodatki</h1>
         {availableIngredients && availableIngredients.map((item) => (
           <div className={styles.ingredient} key={item.ingredientId}>
             <p>{item.ingredientName}</p>
-            <p>{item.price} zł</p>
+            <p>{item.price.toFixed(2)} zł</p>
             <div className={styles["btn-container"]}>
               <button onClick={() => removeIngredient(item)}>-</button>
               <p>{returnCurrentAmount(item.ingredientId)}</p>
@@ -194,6 +207,7 @@ const Extras = (props) => {
       )}
       {ReactDOM.createPortal(
         <ExtrasModalOverlay
+          id={props.id}
           closeModal={props.closeModal}
           imgUrl={props.imgUrl}
           name={props.name}

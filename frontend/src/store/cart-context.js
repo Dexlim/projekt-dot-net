@@ -39,7 +39,9 @@ export const CartContextProvider = (props) => {
   );
 
   const addItemToCartHandler = (item) => {
-    const updatedTotalAmount = totalAmount + item.price;
+
+   
+    const updatedTotalAmount = totalAmount + item.price * item.amount;
 
     const existingPizzaIndex = itemsList.findIndex(
       (pizza) => pizza.id === item.id
@@ -49,14 +51,20 @@ export const CartContextProvider = (props) => {
 
     const existingPizzaItem = itemsList[existingPizzaIndex];
 
+  
     if (!existingPizzaItem) {
       updatedItems.push(item);
     } else {
-      const updatedPizza = {
-        ...existingPizzaItem,
-        amount: existingPizzaItem.amount + item.amount,
-      };
-      updatedItems[existingPizzaIndex] = updatedPizza;
+      if (JSON.stringify(existingPizzaItem.extras) === JSON.stringify(item.extras)) {
+        const updatedPizza = {
+          ...existingPizzaItem,
+          amount: existingPizzaItem.amount + item.amount,
+        };
+        updatedItems[existingPizzaIndex] = updatedPizza;
+      }
+      else{
+        updatedItems.push(item);
+      }
     }
 
     setNumberOfItems((prev) => (prev += item.amount));

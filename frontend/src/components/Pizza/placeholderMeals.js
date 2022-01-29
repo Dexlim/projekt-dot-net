@@ -5,7 +5,7 @@ const mealsList = [
       "productType": "Pizza",
       "description": "sos salsa, sos serowy z chilli, ser mozzarella, pierś z kurczaka, salami pepperoni, papryczki chilli, kukurydza, fasola, czerwona cebula, nachosy, oregano",
       "price": 38.99,
-      "pictureUrl": "https://rukola.com.pl/uploads/imgs/thumb/8rgPPh3YUU_nachos.jpg"
+      "pictureUrl": "https://rukola.com.pl/uploads/imgs/thumb/8rgPPh3YUU_nachos.jpg",
     },
     {
       "productId": 2,

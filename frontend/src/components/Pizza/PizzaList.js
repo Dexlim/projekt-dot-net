@@ -9,12 +9,6 @@ const MealItem = (props) => {
   const [showExtras, setShowExtras] = useState(false);
 
   const showExtrasHandler = () => {
-    cartCtx.addItem({
-      id: props.id,
-      name: props.name,
-      price: props.price,
-      amount: 1,
-    });
     setShowExtras(true);
   };
 
@@ -37,6 +31,7 @@ const MealItem = (props) => {
     <React.Fragment>
       {showExtras && (
         <Extras
+          id = {props.id}
           imgUrl={props.imgUrl}
           name={props.name}
           description={props.description}

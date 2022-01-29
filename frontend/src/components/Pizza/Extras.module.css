@@ -127,7 +127,6 @@
   background-color: rgb(200, 16, 43);
   margin-left: 0.5rem;
   margin-right: 0.5rem;
-  margin-top: 1rem;
 }
 .control button:hover {
   border-color: rgb(200, 16, 43);
@@ -149,17 +148,31 @@
 }
 
 .ingredient-list {
-  padding: 20px;
+  width: 60%;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 1rem;
+}
+
+.ingredient-list h1{
+  text-align:center;
 }
 
 .ingredient {
   display: inline-block;
   padding: 3px;
-  width: 30%;
+  width: 33%;
   margin: 5px;
   border: 1px solid white;
   border-radius: 10px;
   text-align: center;
+  box-shadow: 0 6px 4px 6px rgba(0,0,0,0.25);
+  background-color: rgb(200, 16, 43);
+}
+
+.ingredient:hover{
+  transform: scale(1.10);
+  transition: 0.4s;
 }
 
 .ingredient p {
