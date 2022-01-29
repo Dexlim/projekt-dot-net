@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import ReactDOM from "react-dom";
 
 import CartContext from "../../store/cart-context";
@@ -11,9 +11,104 @@ const ExtrasBackdrop = (props) => {
 const ExtrasModalOverlay = (props) => {
   const cartCtx = useContext(CartContext);
   const [itemAmount, setItemAmount] = useState(1);
+  const [clientPizzaPrice, setClientPizzaPrice] = useState(props.price);
+  const [choosenIngredients, setChoosenIngredients] = useState([]);
+  const [availableIngredients, setAvailableIngredients] = useState();
+
+  async function fetchData() {
+    try {
+      const response = await fetch("https://localhost:44376/api/Ingredients");
+
+      if (!response.ok) {
+        throw new Error();
+      }
+
+      const data = await response.json();
+      setAvailableIngredients(data);
+    } catch (e) {
+      console.log(e.message);
+    }
+  }
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const addIngredient = (ingredient) => {
+    let updatedIngredients = [...choosenIngredients];
+
+    const existingIngredientIndex = updatedIngredients.findIndex(
+      (item) => item.ingredientId === ingredient.ingredientId
+    );
+
+    const existingIngredient = choosenIngredients[existingIngredientIndex];
+
+    if (!existingIngredient) {
+      let newIngredient = {
+        ...ingredient,
+        amount: 1,
+      };
+      updatedIngredients = [...choosenIngredients, newIngredient];
+    } else {
+      let updatedIngredient = {
+        ...existingIngredient,
+        amount: (existingIngredient.amount += 1),
+      };
+      updatedIngredients[existingIngredientIndex] = updatedIngredient;
+    }
+
+    setChoosenIngredients(updatedIngredients);
+    setClientPizzaPrice((prev) => (prev += ingredient.price));
+  };
+
+  const removeIngredient = (ingredient) => {
+    let updatedIngredients = [...choosenIngredients];
+
+    const existingIngredientIndex = updatedIngredients.findIndex(
+      (item) => item.ingredientId === ingredient.ingredientId
+    );
+
+    const existingIngredient = choosenIngredients[existingIngredientIndex];
+
+    if (existingIngredient) {
+      let updatedIngredient = {
+        ...existingIngredient,
+        amount: (existingIngredient.amount -= 1),
+      };
+      if (updatedIngredient.amount <= 0) {
+        updatedIngredients.splice(existingIngredientIndex);
+      } else {
+        updatedIngredients[existingIngredientIndex] = updatedIngredient;
+      }
+      setChoosenIngredients(updatedIngredients);
+      setClientPizzaPrice((prev) => (prev -= ingredient.price));
+    }
+  };
+
+  const returnCurrentAmount = (id) => {
+    const existingIngredientIndex = [...choosenIngredients].findIndex(
+      (item) => item.ingredientId === id
+    );
+
+    const existingIngredient = choosenIngredients[existingIngredientIndex];
+
+    if (existingIngredient) {
+      return existingIngredient.amount;
+    } else {
+      return 0;
+    }
+  };
+
   const submitHandler = (event) => {
     event.preventDefault();
-    setItemAmount(1);
+
+    cartCtx.addItem({
+      id: props.id,
+      name: props.name,
+      price: clientPizzaPrice,
+      amount: itemAmount,
+    });
+
     props.closeModal();
   };
 
@@ -23,7 +118,7 @@ const ExtrasModalOverlay = (props) => {
         X
       </button>
       <div className={styles.foodcontainer}>
-        <img src={props.imgUrl} />
+        <img src={props.imgUrl} alt={props.name} />
         <div className={styles.imageoverlay} />
         <div className={styles.fooddesc}>
           <h2>{props.name}</h2>
@@ -32,25 +127,26 @@ const ExtrasModalOverlay = (props) => {
           <div className={styles.control}>
             <button
               onClick={() => {
-                if(itemAmount>1){
-                cartCtx.removeItem({
-                  id: props.id,
-                  name: props.name,
-                  price: props.price,
-                  amount: 1,
-                });
-                setItemAmount(itemAmount - 1);
-              }}}
+                if (itemAmount > 1) {
+                  cartCtx.removeItem({
+                    id: props.id,
+                    name: props.name,
+                    price: clientPizzaPrice,
+                    amount: 1,
+                  });
+                  setItemAmount(itemAmount - 1);
+                }
+              }}
             >
               -
             </button>
-            <h1>{(itemAmount * props.price).toFixed(2)} zł</h1>
+            <h1>{(itemAmount * clientPizzaPrice).toFixed(2)} zł</h1>
             <button
               onClick={() => {
                 cartCtx.addItem({
                   id: props.id,
                   name: props.name,
-                  price: props.price,
+                  price: clientPizzaPrice,
                   amount: 1,
                 });
                 setItemAmount(itemAmount + 1);
@@ -61,7 +157,22 @@ const ExtrasModalOverlay = (props) => {
           </div>
         </div>
       </div>
-      <button className={styles.confirm} onClick={submitHandler}>Dodaj do koszyka</button>
+      <div className={styles["ingredient-list"]}>
+        {availableIngredients && availableIngredients.map((item) => (
+          <div className={styles.ingredient} key={item.ingredientId}>
+            <p>{item.ingredientName}</p>
+            <p>{item.price} zł</p>
+            <div className={styles["btn-container"]}>
+              <button onClick={() => removeIngredient(item)}>-</button>
+              <p>{returnCurrentAmount(item.ingredientId)}</p>
+              <button onClick={() => addIngredient(item)}>+</button>
+            </div>
+          </div>
+        ))}
+        <button className={styles.confirm} onClick={submitHandler}>
+          Dodaj do koszyka
+        </button>
+      </div>
     </div>
   );
 };

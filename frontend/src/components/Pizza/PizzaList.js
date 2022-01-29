@@ -41,6 +41,7 @@ const MealItem = (props) => {
           name={props.name}
           description={props.description}
           price={props.price}
+          type={props.type}
           closeModal={closeExtrasHandler}
         />
       )}
