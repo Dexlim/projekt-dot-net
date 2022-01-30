@@ -177,14 +177,6 @@ const mealsList = [
       },
       {
         "productId": 23,
-        "productName": "Dodatkowy sos",
-        "productType": "Dodatki",
-        "description": "Do wyboru: czosnkowy, pomidorowy, tzatziki, chili, tysiąca wysp, BBQ, ketchup",
-        "price": 1.99,
-        "pictureUrl": "https://1.bp.blogspot.com/-eGLSFr1Smmk/YIZ76xUlhTI/AAAAAAAASYU/DF_LwyH9Ibcuu7JCvYKtyvS6QQJTDLw2QCPcBGAYYCw/s800/3%2Bsosy%2Bna%2Bimprez%25C4%2599%2Bi%2Bdo%2Bgrilla%2B-%2Bzrobisz%2Bje%2Bw%2Bkilka%2Bminut%2B%25281%2529.JPG"
-      },
-      {
-        "productId": 24,
         "productName": "Coca-Cola",
         "productType": "Napoje",
         "description": "500ml",
@@ -192,7 +184,7 @@ const mealsList = [
         "pictureUrl": "https://www.carrefour.pl/images/product/org/cocacola-napoj-gazowany-15-l-1c8d0t.jpg"
       },
       {
-        "productId": 25,
+        "productId": 24,
         "productName": "Lipton Green Ice Tea",
         "productType": "Napoje",
         "description": "500ml",
@@ -200,7 +192,7 @@ const mealsList = [
         "pictureUrl": "https://samujacka.sklepkupiec.pl/867759-thickbox_default/lipton-ice-tea-green-napoj-niegazowany-15-l.jpg"
       },
       {
-        "productId": 26,
+        "productId": 25,
         "productName": "Lipton Lemon Ice Tea",
         "productType": "Napoje",
         "description": "500ml",
@@ -208,7 +200,7 @@ const mealsList = [
         "pictureUrl": "https://polskikoszyk.pl/media/catalog/product/cache/1/thumbnail/280x280/040ec09b1e35df139433887a97daa66f/97659/lipton-ice-tea-lemon-napoj-niegazowany-500-ml-herbata-mrozona-napoje-kawa-i-herbata_0.png"
       },
       {
-        "productId": 27,
+        "productId": 26,
         "productName": "Woda",
         "productType": "Napoje",
         "description": "500ml",

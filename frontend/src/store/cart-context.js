@@ -86,11 +86,19 @@ export const CartContextProvider = (props) => {
   };
 
   const removeItemFromCartHandler = (item) => {
-    const updatedTotalAmount = totalAmount - item.price;
+    let updatedTotalAmount = totalAmount - item.price;
 
-    const existingPizzaIndex = itemsList.findIndex(
-      (pizza) => pizza.id === item.id
-    );
+    const findPizza = (element) =>{
+        if(element.id === item.id)
+        {
+          if(JSON.stringify(element.extras) === JSON.stringify(item.extras))
+              return true;
+        }
+          return false;
+    }
+
+    const existingPizzaIndex = itemsList.findIndex(element => findPizza(element));
+    console.log(existingPizzaIndex);
 
     let updatedItems = [...itemsList];
 
@@ -112,6 +120,8 @@ export const CartContextProvider = (props) => {
 
     setNumberOfItems((prev) => (prev -= item.amount));
     setItemsList(updatedItems);
+    if(updatedTotalAmount<0)
+      updatedTotalAmount=0;
     setTotalAmount(updatedTotalAmount);
 
     if (updatedItems.length === 0) {

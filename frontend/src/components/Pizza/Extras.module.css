@@ -30,9 +30,9 @@
 
 .close {
   border-width: 2px;
-  position: absolute;
-  top: -2.5rem;
-  right: -1rem;
+  position: fixed;
+  top: 2%;
+  right: 8%;
   padding: 0.5rem 0.7rem;
   border-radius: 50%;
   color: white;
@@ -50,7 +50,7 @@
   box-shadow: 6px 2px 6px 6px rgba(0, 0, 0, 0.45);
   border-radius: 5vmin;
   height: 100%;
-  width: 50%;
+  width: 70%;
   border-color: white;
   border-style: solid;
   border-width: 2px;
@@ -70,7 +70,7 @@
   width: 100%;
   height: 30vmin;
   border-radius: 5vmin 5vmin 0 0;
-  background: linear-gradient(rgba(255, 255, 255, 0.15), rgba(0, 0, 0, 0.35));
+  background: linear-gradient(rgba(255, 255, 255, 0.15), rgba(200, 16, 43, 0.35));
   border-width: 0px 0px 2px 0px;
   border-style: solid;
   border-color: white;
@@ -92,12 +92,13 @@
 
 .fooddesc p {
   padding-top: 0.25rem;
+  font-size: 1.2vmax;
 }
 
 .fooddesc h3 {
   text-align: center;
   width: 100%;
-  margin-top: 2rem;
+  margin-top: 0.5rem;
   padding-top: 0.5rem;
 }
 
@@ -108,6 +109,7 @@
   border-color: white;
   border-style: solid;
   border-width: 2px;
+  font-size: 2vmax;
 }
 
 .control {
@@ -125,8 +127,8 @@
   color: white;
   border-color: white;
   background-color: rgb(200, 16, 43);
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
+  margin-left: 0.1rem;
+  margin-right: 0.1rem;
 }
 .control button:hover {
   border-color: rgb(200, 16, 43);
@@ -136,15 +138,15 @@
 
 .confirm {
   position: relative;
-  top: 65%;
-  left: 22%;
+  top: 60%;
+  left: 50%;
   height: fit-content;
   padding: 1rem;
   border-radius: 5vmin;
   border-style: solid;
   border-width: 2px;
   border-color: white;
-  font-size: larger;
+  font-size: 1.7vmax;
 }
 
 .ingredient-list {
@@ -162,12 +164,14 @@
   display: inline-block;
   padding: 3px;
   width: 33%;
+  word-wrap: break-word;
   margin: 5px;
   border: 1px solid white;
   border-radius: 10px;
   text-align: center;
   box-shadow: 0 6px 4px 6px rgba(0,0,0,0.25);
   background-color: rgb(200, 16, 43);
+  font-size: 1.4vmax;
 }
 
 .ingredient:hover{
@@ -193,4 +197,74 @@
   justify-content: center;
   align-items: center;
   column-gap: 4px;
+}
+
+.pizzasize{
+  position: fixed;
+  top: 87%;
+  left: 50%;
+  height: fit-content;
+  padding: 1rem;
+  border-radius: 0 0 5vmin 5vmin;
+  border-style: solid;
+  border-width: 2px;
+  border-color: white;
+  background-color: white;
+  font-size: 1.7vmax;
+}
+
+.pizzasize:focus{
+  outline: none;
+}
+
+
+
+@media only screen and (max-width: 800px){
+  .extramodal{
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border-radius: 5vmin 10px 10px 5vmin;
+  }
+  .extramodal::-webkit-scrollbar {
+    width: 18px;
+  }
+  
+  .extramodal::-webkit-scrollbar-track {
+    background-color: rgb(238, 170, 170);
+    box-shadow: inset 0 0 6px 4px rgba(0, 0, 0, 0.3);
+    border-radius: 0 10px 10px 0;
+  }
+  
+  .extramodal::-webkit-scrollbar-thumb {
+    background-color: white;
+    border-radius: 0 10px 10px 0;
+    box-shadow: inset 0 0 6px 2px rgba(0, 0, 0, 0.5);
+  }
+  
+  .extramodal::-webkit-scrollbar-thumb:active {
+    background-color: rgb(200, 16, 43);
+    border-radius: 0 10px 10px 0;
+    box-shadow: inset 0 0 6px 2px rgba(0, 0, 0, 0.5);
+  }
+  .foodcontainer {
+    box-shadow: 6px 2px 6px 6px rgba(0, 0, 0, 0.45);
+    border-radius: 5vmin;
+    width: 100%;
+    height: 75%;
+    border-color: white;
+    border-style: solid;
+    border-width: 2px;
+  }
+  .foodcontainer p{
+    font-size: 1.4vmax;
+  }
+  .fooddesc h3{
+    margin-top: 0;
+    padding-top: 0.5rem;
+    font-size: 1.5vmax;
+  }
+  .controls{
+    justify-content: right;
+  }
 }

@@ -50,7 +50,7 @@ const MealsList = () => {
                 key={meal.productId}
                 id={meal.productId}
                 name={meal.productName}
-                type={meal.productType}
+                type={filter}
                 description={meal.description}
                 price={meal.price}
                 imgUrl={meal.pictureUrl}

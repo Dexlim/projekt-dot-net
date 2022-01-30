@@ -8,16 +8,25 @@ const OrderItem = (props) => {
 const cartCtx = useContext(CartContext);
 
 const ingredientsToString = () =>{
-  let ingList = props.item.extras.map(x =>(
+  let ingList = props.item.extras.filter((x) => x.ingredientId > 0).map(x =>(
     x.ingredientName + " x" + x.amount + "("+(x.amount*x.price).toFixed(2)+"zł), "
     )).join("").slice(0,-2); 
   return ingList 
 }
+
+const fullName = () =>{
+  if(props.item.type === "Pizza"){
+    return props.item.name+" "+props.item.extras[0].ingredientName;
+  }
+  else
+    return props.item.name;
+}
+
   return (
     <li key={props.id}>
       <div className={styles.container}>
       <div className={styles.amount}>{props.item.amount}</div>
-      <div className={styles.name}>{props.item.name}</div>
+      <div className={styles.name}>{fullName()}</div>
       <div className={styles.price}>{(props.item.amount*props.item.price).toFixed(2)}zł</div>
       </div>
       <div className={styles.extras}>{ingredientsToString()}</div>
