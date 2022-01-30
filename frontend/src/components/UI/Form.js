@@ -21,20 +21,27 @@ const Form = () => {
   const cartCtx = useContext(CartContext);
 
   async function fetchData() {
-    const items = cartCtx.items.map((item) => ({
-      productId: item.id,
-      quantity: item.amount,
-      amount: item.price,
-    }));
+    const itemsDetails = [];
+
+    const items = cartCtx.items.map((item, index) => {
+      item.extras.map((extra) => {
+        itemsDetails.push({
+          productId: item.id,
+          ingredientId: extra.ingredientId,
+          quantity: extra.amount,
+          amount: extra.price * extra.amount,
+          pizzaId: index,
+        });
+      });
+    });
 
     const enteredDate = {
       customer: enteredValues,
       totalAmount: cartCtx.totalAmount,
-      orderDetails: items,
+      orderDetails: itemsDetails,
     };
     console.log(JSON.stringify(enteredDate));
 
-    
     try {
       const result = await fetch("https://localhost:44376/api/Orders", {
         method: "POST",
@@ -60,7 +67,7 @@ const Form = () => {
     console.log(enteredValues);
     fetchData();
     setEnteredValues(defaultEnteredValues);
-    cartCtx.clearItemsList();
+    //cartCtx.clearItemsList();
   };
 
   const onChangeHandler = (e) => {

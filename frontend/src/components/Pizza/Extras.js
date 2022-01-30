@@ -74,7 +74,7 @@ const ExtrasModalOverlay = (props) => {
     setClientPizzaPrice((prev) => (prev += ingredient.price));
 
     let ingList = updatedIngredients
-      .filter((x) => x.ingredientType === 'extra')
+      .filter((x) => x.ingredientType === "extra")
       .map(
         (x) =>
           x.ingredientName +
@@ -112,7 +112,7 @@ const ExtrasModalOverlay = (props) => {
       setChoosenIngredients(updatedIngredients);
       setClientPizzaPrice((prev) => (prev -= ingredient.price));
       let ingList = updatedIngredients
-        .filter((x) => x.ingredientType === 'extra')
+        .filter((x) => x.ingredientType === "extra")
         .map(
           (x) =>
             x.ingredientName +
@@ -143,6 +143,8 @@ const ExtrasModalOverlay = (props) => {
   };
 
   const submitHandler = (event) => {
+    event.preventDefault();
+
     function dynamicSort(property) {
       return function (a, b) {
         return a[property] < b[property]
@@ -154,8 +156,7 @@ const ExtrasModalOverlay = (props) => {
     }
     let submitingredients = choosenIngredients;
     submitingredients.sort(dynamicSort("ingredientId"));
-
-    event.preventDefault();
+    
     cartCtx.addItem({
       id: props.id,
       name: props.name,
@@ -203,7 +204,7 @@ const ExtrasModalOverlay = (props) => {
     setClientPizzaPrice((prev) => (prev += updatedIngredient.price - oldPrice));
 
     let ingList = updatedIngredients
-      .filter((x) => x.ingredientType === 'extra')
+      .filter((x) => x.ingredientType === "extra")
       .map(
         (x) =>
           x.ingredientName +
@@ -259,20 +260,21 @@ const ExtrasModalOverlay = (props) => {
       </div>
 
       <div className={styles["ingredient-list"]}>
-        {props.type=="Pizza" && <h1>Dodatki</h1>}
-        {
-        availableIngredients &&
-          availableIngredients.filter(x=>x.ingredientType==="extra").map((item) => (
-            <div className={styles.ingredient} key={item.ingredientId}>
-              <p>{item.ingredientName}</p>
-              <p>{item.price.toFixed(2)} zł</p>
-              <div className={styles["btn-container"]}>
-                <button onClick={() => removeIngredient(item)}>-</button>
-                <p>{returnCurrentAmount(item.ingredientId)}</p>
-                <button onClick={() => addIngredient(item)}>+</button>
+        {props.type == "Pizza" && <h1>Dodatki</h1>}
+        {availableIngredients &&
+          availableIngredients
+            .filter((x) => x.ingredientType === "extra")
+            .map((item) => (
+              <div className={styles.ingredient} key={item.ingredientId}>
+                <p>{item.ingredientName}</p>
+                <p>{item.price.toFixed(2)} zł</p>
+                <div className={styles["btn-container"]}>
+                  <button onClick={() => removeIngredient(item)}>-</button>
+                  <p>{returnCurrentAmount(item.ingredientId)}</p>
+                  <button onClick={() => addIngredient(item)}>+</button>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
         {props.type === "Pizza" && (
           <select
             onChange={valueChangedHandler}
