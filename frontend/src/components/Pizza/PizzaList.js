@@ -16,6 +16,7 @@ const MealItem = (props) => {
     setShowExtras(false);
   };
 
+
   const submitHandler = (event) => {
     event.preventDefault();
 

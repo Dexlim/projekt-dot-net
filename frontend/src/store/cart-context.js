@@ -119,10 +119,12 @@ export const CartContextProvider = (props) => {
     }
 
     setNumberOfItems((prev) => (prev -= item.amount));
+
     setItemsList(updatedItems);
     if(updatedTotalAmount<0)
       updatedTotalAmount=0;
     setTotalAmount(updatedTotalAmount);
+
 
     if (updatedItems.length === 0) {
       clearLocalStorage();

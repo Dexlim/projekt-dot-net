@@ -1,3 +1,4 @@
+
 import { Fragment, useContext } from "react";
 import { Link } from "react-router-dom";
 
@@ -8,8 +9,13 @@ import Order from "../Order/Order";
 
 import styles from "./Cart.module.css";
 
+
 const Cart = (props) => {
-  const cartCtx = useContext(CartContext);
+  const [showForm, setShowForm] = useState(false);
+
+  const setShowFormHandler = () => {
+    setShowForm((prev) => !prev);
+  };
 
   const orderNotEmpty = (
     <Fragment>
