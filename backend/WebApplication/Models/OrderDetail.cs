@@ -18,5 +18,7 @@ namespace WebApplication.Models
         public int OrderId { get; set; }
         public int Quantity { get; set; }
         public double Amount { get; set; }
+        public int PizzaId { get; set; }
+
     }
 }
