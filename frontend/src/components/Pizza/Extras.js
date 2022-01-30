@@ -34,6 +34,7 @@ const ExtrasModalOverlay = (props) => {
       }
 
       const data = await response.json();
+      data[0].amount = 1;
       setChoosenIngredients([data[0]]);
       setAvailableIngredients(data);
     } catch (e) {

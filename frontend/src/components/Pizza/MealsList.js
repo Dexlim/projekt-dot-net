@@ -11,27 +11,27 @@ const MealsList = () => {
   const [filter, setFilter] = useState("Pizza");
 
 
-  //const [mealsList, setMealsList] = useState();
+  const [mealsList, setMealsList] = useState();
 
-  // async function fetchData() {
-  //   try {
-  //     const response = await fetch("https://localhost:44376/api/Products");
+  async function fetchData() {
+    try {
+      const response = await fetch("https://localhost:44376/api/Products");
 
-  //     if (!response.ok) {
-  //       throw new Error();
-  //     }
+      if (!response.ok) {
+        throw new Error();
+      }
 
-  //     const data = await response.json();
+      const data = await response.json();
 
-  //     setMealsList(data);
-  //   } catch (e) {
-  //     console.log(e.message);
-  //   }
-  // }
+      setMealsList(data);
+    } catch (e) {
+      console.log(e.message);
+    }
+  }
 
-  // useEffect(() => {
-  //   fetchData();
-  // }, []);
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const filterChangeHandler = (param) => {
     setFilter(param);

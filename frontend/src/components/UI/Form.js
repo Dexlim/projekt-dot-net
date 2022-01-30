@@ -24,14 +24,25 @@ const Form = () => {
     const itemsDetails = [];
 
     const items = cartCtx.items.map((item, index) => {
-      item.extras.map((extra) => {
+      if (item.extras.length > 0) {
+        item.extras.map((extra) => {
+          itemsDetails.push({
+            productId: item.id,
+            ingredientId: extra.ingredientId,
+            quantity: extra.amount,
+            pizzaId: index,
+            amount: extra.amount ? extra.amount * extra.price : 0,
+          });
+        });
+      } else {
         itemsDetails.push({
           productId: item.id,
-          ingredientId: extra.ingredientId,
-          quantity: extra.amount,
+          ingredientId: 78,
+          quantity: item.amount,
           pizzaId: index,
+          amount: item.amount * item.price,
         });
-      });
+      }
     });
 
     const enteredDate = {
@@ -66,7 +77,7 @@ const Form = () => {
     console.log(enteredValues);
     fetchData();
     setEnteredValues(defaultEnteredValues);
-    //cartCtx.clearItemsList();
+    cartCtx.clearItemsList();
   };
 
   const onChangeHandler = (e) => {
