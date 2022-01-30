@@ -29,7 +29,6 @@ const Form = () => {
           productId: item.id,
           ingredientId: extra.ingredientId,
           quantity: extra.amount,
-          amount: extra.price * extra.amount,
           pizzaId: index,
         });
       });
