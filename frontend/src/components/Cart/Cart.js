@@ -1,10 +1,14 @@
-import { useState } from "react";
+
+import { Fragment, useContext } from "react";
+import { Link } from "react-router-dom";
+
+import CartContext from "../../store/cart-context";
 
 import Modal from "../UI/Modal";
-import Form from "./Form";
+import Order from "../Order/Order";
 
 import styles from "./Cart.module.css";
-import Order from "./Order";
+
 
 const Cart = (props) => {
   const [showForm, setShowForm] = useState(false);
@@ -13,16 +17,31 @@ const Cart = (props) => {
     setShowForm((prev) => !prev);
   };
 
+  const orderNotEmpty = (
+    <Fragment>
+      <button onClick={props.closeModal} className={styles.close}>
+        X
+      </button>
+      <Order closeModal={props.onClose} />
+      <br/>
+      <Link to="/zamowienie" onClick={props.closeModal} className={styles.order}>
+        <i className={"fas fa-wallet"}/> Przejdź do zamówienia
+      </Link>
+    </Fragment>
+  );
+
+  const orderIsEmpty = (
+    <Fragment>
+      <div className={styles.emptycart}>Twój koszyk jest aktualnie pusty.</div>
+    </Fragment>
+  );
+
   return (
     <Modal onClose={props.closeModal}>
       <button onClick={props.closeModal} className={styles.close}>
         X
       </button>
-      {showForm && <Form />}
-      {!showForm && <Order closeModal={props.onClose} />}
-      <button type="button" onClick={setShowFormHandler}>
-        {!showForm ? "Złóż zamówienie" : "Pokaż zamówienie"}
-      </button>
+      {cartCtx.totalAmount > 0 ? orderNotEmpty : orderIsEmpty}
     </Modal>
   );
 };

@@ -1,6 +1,75 @@
 .close {
-  border: none;
+
+  border-width: 2px;
   position: absolute;
-  top: 5px;
-  right: 5px;
+  top: -1rem;
+  right: -1rem;
+  padding: 1% 2%;
+  border-radius: 50%;
+  color: white;
+  border-color: white;
+  background-color: rgb(200, 16, 43);
 }
+
+.close:hover {
+  border-color: rgb(200, 16, 43);
+  color: rgb(200, 16, 43);
+  background-color: white;
+}
+
+.order {
+  text-align: center;
+  color: white;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 25vw;
+  padding: 1.25rem;
+  position: absolute;
+  top: 105%;
+  left: 0;
+  width: 100%;
+  background-color: rgb(200, 16, 43);
+  box-shadow: inset 0 0 15px 14px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.order i {
+  transform: scale(2);
+}
+
+.emptycart {
+  margin-top: 30%;
+  text-align: center;
+  font-size: xx-large;
+}
+
+@keyframes orderHover {
+  from {
+    color: white;
+    border-color: rgb(200, 16, 43);
+    background-color: rgb(200, 16, 43);
+  }
+  to {
+    color: rgb(200, 16, 43);
+    border-color: rgb(200, 16, 43);
+    background-color: white;
+  }
+}
+.order:hover {
+  animation-name: orderHover;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+}
+
+@media only screen and (max-width: 600px) {
+  .order {
+    font-size: smaller;
+  }
+}
+@media only screen and (max-width: 335px) {
+  .order {
+    font-size: x-small;
+  }
+

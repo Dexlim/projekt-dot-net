@@ -1,5 +1,4 @@
 import ReactDOM from "react-dom";
-
 import { Fragment } from "react/cjs/react.production.min";
 
 import styles from "./Modal.module.css";
@@ -19,6 +18,13 @@ const ModalOverlay = (props) => {
 const portalElement = document.getElementById("overlays");
 
 const Modal = (props) => {
+
+  document.onkeydown = function (evt) {
+    if (evt.key === 'Escape') {
+        props.onClose();
+    }
+};
+
   return (
     <Fragment>
       {ReactDOM.createPortal(

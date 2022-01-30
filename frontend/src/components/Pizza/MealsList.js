@@ -1,24 +1,65 @@
-import MealItem from "./PizzaList";
+import React, { useEffect, useState } from "react";
 
-const DUMMY_DATA = [
-  {
-    id: 0,
-    name: "pizza wloska",
-    price: 12.9,
-  },
-  {
-    id: 1,
-    name: "pizza polska",
-    price: 10.9,
-  },
-];
+import MealItem from "./PizzaList";
+import mealsList from "./placeholderMeals";
+import CategoryNav from "./CategoryNav";
+import Extras from "./Extras";
+
+import styles from "./MealsList.module.css";
 
 const MealsList = () => {
-  const mealsList = DUMMY_DATA.map((meal) => (
-    <MealItem key={meal.id} id={meal.id} name={meal.name} price={meal.price} />
-  ));
+  const [filter, setFilter] = useState("Pizza");
 
-  return <ul>{mealsList}</ul>;
+
+  const [mealsList, setMealsList] = useState();
+
+  async function fetchData() {
+    try {
+      const response = await fetch("https://localhost:44376/api/Products");
+
+      if (!response.ok) {
+        throw new Error();
+      }
+
+      const data = await response.json();
+
+      setMealsList(data);
+    } catch (e) {
+      console.log(e.message);
+    }
+  }
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const filterChangeHandler = (param) => {
+    setFilter(param);
+  };
+  
+
+  return (
+    <div className={styles.menu}>
+      <CategoryNav filterChange={filterChangeHandler} />
+      <ul className={styles.mealscard}>
+        {mealsList &&
+          mealsList
+            .filter((meal) => meal.productType === filter)
+            .map((meal) => (
+              <MealItem
+                key={meal.productId}
+                id={meal.productId}
+                name={meal.productName}
+                type={filter}
+                description={meal.description}
+                price={meal.price}
+                imgUrl={meal.pictureUrl}
+              />
+            ))}
+        {!mealsList && <p>Menu jest aktualnie puste.</p>}
+      </ul>
+    </div>
+  );
 };
 
 export default MealsList;

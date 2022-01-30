@@ -1,0 +1,50 @@
+.ul {
+  width: 60%;
+  margin-left: 20%;
+  margin-top: 10%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.ul li {
+  text-transform: uppercase;
+  background-color: rgb(145, 33, 33);
+  box-shadow: 0 4px 9px 2px rgba(0, 0, 0, 0.45);
+  color: white;
+  border-radius: 45% 45% 0% 0%;
+  width: auto;
+  padding-top: 1vmax;
+  padding-bottom: 1vmax;
+  padding-left: 1vmax;
+  padding-right: 1vmax;
+  font-size: 1vmax;
+  z-index: 1;
+  cursor: pointer;
+}
+
+@keyframes liHover {
+  from {
+  }
+  to {
+    transform: scale(1.4);
+    background-color: rgb(200, 16, 43);
+  }
+}
+
+.ul li:hover {
+  animation-name: liHover;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+  z-index: 3;
+}
+.ul li.active {
+  transform: scale(1.4);
+  cursor: pointer;
+  background-color: rgb(200, 16, 43);
+  z-index: 2;
+}
+
+.ul li.active:hover {
+  animation-name: none;
+}
