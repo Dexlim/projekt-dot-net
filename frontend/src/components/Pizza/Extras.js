@@ -19,10 +19,6 @@ const ExtrasModalOverlay = (props) => {
   const [itemAmount, setItemAmount] = useState(1);
   const [clientPizzaPrice, setClientPizzaPrice] = useState(props.price);
   const [choosenIngredients, setChoosenIngredients] = useState([]);
-<<<<<<< HEAD
-=======
-
->>>>>>> 916e733d39a2fc2f31ab8e1d395ce3d441a930dc
   const [availableIngredients, setAvailableIngredients] = useState();
   const [selectState, setSelectState] = useState("small");
 
@@ -40,7 +36,6 @@ const ExtrasModalOverlay = (props) => {
       const data = await response.json();
       setChoosenIngredients([data[0]]);
       setAvailableIngredients(data);
-      setChoosenIngredients([data[0]]);
     } catch (e) {
       console.log(e.message);
     }
@@ -107,7 +102,6 @@ const ExtrasModalOverlay = (props) => {
         ...existingIngredient,
         amount: (existingIngredient.amount -= 1),
       };
-      console.log(existingIngredientIndex);
       if (updatedIngredient.amount <= 0) {
         updatedIngredients.splice(existingIngredientIndex);
       } else {
@@ -183,21 +177,21 @@ const ExtrasModalOverlay = (props) => {
     let updatedIngredient = existingIngredient;
     if (event.target.value === "small")
       updatedIngredient = {
-        ingredientId: 1,
+        ingredientId: availableIngredients[0].ingredientId,
         ingredientName: "32cm",
         price: 0,
         amount: 1,
       };
     if (event.target.value === "medium")
       updatedIngredient = {
-        ingredientId: 2,
+        ingredientId: availableIngredients[1].ingredientId,
         ingredientName: "46cm",
         price: 6,
         amount: 1,
       };
     if (event.target.value === "big")
       updatedIngredient = {
-        ingredientId: 3,
+        ingredientId: availableIngredients[2].ingredientId,
         ingredientName: "52cm",
         price: 8,
         amount: 1,
