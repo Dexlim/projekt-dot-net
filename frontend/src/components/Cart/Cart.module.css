@@ -1,5 +1,4 @@
 .close {
-
   border-width: 2px;
   position: absolute;
   top: -1rem;
@@ -72,4 +71,4 @@
   .order {
     font-size: x-small;
   }
-
+}

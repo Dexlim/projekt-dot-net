@@ -1,5 +1,5 @@
 
-import { Fragment, useContext } from "react";
+import { Fragment, useContext, useState } from "react";
 import { Link } from "react-router-dom";
 
 import CartContext from "../../store/cart-context";
@@ -12,7 +12,7 @@ import styles from "./Cart.module.css";
 
 const Cart = (props) => {
   const [showForm, setShowForm] = useState(false);
-
+  const cartCtx = useContext(CartContext);
   const setShowFormHandler = () => {
     setShowForm((prev) => !prev);
   };
