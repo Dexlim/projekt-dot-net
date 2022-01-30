@@ -8,7 +8,7 @@ const OrderItem = (props) => {
 const cartCtx = useContext(CartContext);
 
 const ingredientsToString = () =>{
-  let ingList = props.item.extras.filter((x) => x.ingredientId > 0).map(x =>(
+  let ingList = props.item.extras.filter((x) => x.ingredientType === "extra").map(x =>(
     x.ingredientName + " x" + x.amount + "("+(x.amount*x.price).toFixed(2)+"zł), "
     )).join("").slice(0,-2); 
   return ingList 

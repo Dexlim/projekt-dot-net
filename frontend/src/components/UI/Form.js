@@ -102,7 +102,7 @@ const Form = () => {
       <div className={styles.controlgroup}>
         <input
           id="phoneNumber"
-          type="text"
+          type="tel"
           placeholder="Telefon"
           onChange={onChangeHandler}
           required

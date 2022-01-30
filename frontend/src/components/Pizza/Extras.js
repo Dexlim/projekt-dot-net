@@ -19,7 +19,7 @@ const ExtrasModalOverlay = (props) => {
   const [itemAmount, setItemAmount] = useState(1);
   const [clientPizzaPrice, setClientPizzaPrice] = useState(props.price);
   const [choosenIngredients, setChoosenIngredients] = useState([
-    { ingredientId: 0, ingredientName: "32cm", price: 0, amount: 1 },
+    { ingredientId: 1, ingredientName: "32cm", price: 0, amount: 1 },
   ]);
   const [availableIngredients, setAvailableIngredients] = useState();
   const [selectState, setSelectState] = useState("small");
@@ -74,7 +74,7 @@ const ExtrasModalOverlay = (props) => {
     setClientPizzaPrice((prev) => (prev += ingredient.price));
 
     let ingList = updatedIngredients
-      .filter((x) => x.ingredientId > 0)
+      .filter((x) => x.ingredientType === 'extra')
       .map(
         (x) =>
           x.ingredientName +
@@ -112,7 +112,7 @@ const ExtrasModalOverlay = (props) => {
       setChoosenIngredients(updatedIngredients);
       setClientPizzaPrice((prev) => (prev -= ingredient.price));
       let ingList = updatedIngredients
-        .filter((x) => x.ingredientId > 0)
+        .filter((x) => x.ingredientType === 'extra')
         .map(
           (x) =>
             x.ingredientName +
@@ -178,21 +178,21 @@ const ExtrasModalOverlay = (props) => {
     let updatedIngredient = existingIngredient;
     if (event.target.value === "small")
       updatedIngredient = {
-        ingredientId: 0,
+        ingredientId: 1,
         ingredientName: "32cm",
         price: 0,
         amount: 1,
       };
     if (event.target.value === "medium")
       updatedIngredient = {
-        ingredientId: 0,
+        ingredientId: 2,
         ingredientName: "46cm",
         price: 6,
         amount: 1,
       };
     if (event.target.value === "big")
       updatedIngredient = {
-        ingredientId: 0,
+        ingredientId: 3,
         ingredientName: "52cm",
         price: 8,
         amount: 1,
@@ -203,7 +203,7 @@ const ExtrasModalOverlay = (props) => {
     setClientPizzaPrice((prev) => (prev += updatedIngredient.price - oldPrice));
 
     let ingList = updatedIngredients
-      .filter((x) => x.ingredientId > 0)
+      .filter((x) => x.ingredientType === 'extra')
       .map(
         (x) =>
           x.ingredientName +
@@ -260,8 +260,9 @@ const ExtrasModalOverlay = (props) => {
 
       <div className={styles["ingredient-list"]}>
         {props.type=="Pizza" && <h1>Dodatki</h1>}
-        {availableIngredients &&
-          availableIngredients.map((item) => (
+        {
+        availableIngredients &&
+          availableIngredients.filter(x=>x.ingredientType==="extra").map((item) => (
             <div className={styles.ingredient} key={item.ingredientId}>
               <p>{item.ingredientName}</p>
               <p>{item.price.toFixed(2)} zł</p>
