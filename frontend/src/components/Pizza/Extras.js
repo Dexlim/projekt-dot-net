@@ -18,9 +18,7 @@ const ExtrasModalOverlay = (props) => {
   const cartCtx = useContext(CartContext);
   const [itemAmount, setItemAmount] = useState(1);
   const [clientPizzaPrice, setClientPizzaPrice] = useState(props.price);
-  const [choosenIngredients, setChoosenIngredients] = useState([
-    { ingredientId: 1, ingredientName: "32cm", price: 0, amount: 1 },
-  ]);
+  const [choosenIngredients, setChoosenIngredients] = useState([]);
   const [availableIngredients, setAvailableIngredients] = useState();
   const [selectState, setSelectState] = useState("small");
 
@@ -37,6 +35,7 @@ const ExtrasModalOverlay = (props) => {
 
       const data = await response.json();
       setAvailableIngredients(data);
+      setChoosenIngredients([data[0]]);
     } catch (e) {
       console.log(e.message);
     }
