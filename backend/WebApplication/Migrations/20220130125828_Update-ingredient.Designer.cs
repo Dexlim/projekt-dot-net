@@ -9,8 +9,8 @@ using WebApplication.Models;
 namespace WebApplication.Migrations
 {
     [DbContext(typeof(RestaurantDbContext))]
-    [Migration("20220128181523_Init-migration")]
-    partial class Initmigration
+    [Migration("20220130125828_Update-ingredient")]
+    partial class Updateingredient
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -107,6 +107,9 @@ namespace WebApplication.Migrations
                     b.Property<double>("Amount")
                         .HasColumnType("float");
 
+                    b.Property<int>("IngredientId")
+                        .HasColumnType("int");
+
                     b.Property<int>("OrderId")
                         .HasColumnType("int");
 
@@ -117,6 +120,8 @@ namespace WebApplication.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("OrderDetailId");
+
+                    b.HasIndex("IngredientId");
 
                     b.HasIndex("OrderId");
 
@@ -152,28 +157,6 @@ namespace WebApplication.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("WebApplication.Models.Recipe", b =>
-                {
-                    b.Property<int>("RecipeId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("IngredientId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.HasKey("RecipeId");
-
-                    b.HasIndex("IngredientId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("Recipes");
-                });
-
             modelBuilder.Entity("WebApplication.Models.Order", b =>
                 {
                     b.HasOne("WebApplication.Models.Customer", "Customer")
@@ -187,26 +170,15 @@ namespace WebApplication.Migrations
 
             modelBuilder.Entity("WebApplication.Models.OrderDetail", b =>
                 {
-                    b.HasOne("WebApplication.Models.Order", null)
-                        .WithMany("OrderDetails")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("WebApplication.Models.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
-                });
-
-            modelBuilder.Entity("WebApplication.Models.Recipe", b =>
-                {
                     b.HasOne("WebApplication.Models.Ingredient", "Ingredient")
                         .WithMany()
                         .HasForeignKey("IngredientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WebApplication.Models.Order", null)
+                        .WithMany("OrderDetails")
+                        .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
