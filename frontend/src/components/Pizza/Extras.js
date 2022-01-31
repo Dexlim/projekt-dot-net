@@ -45,7 +45,7 @@ const ExtrasModalOverlay = (props) => {
   useEffect(() => {
     if (props.type === "Pizza") fetchData();
     else setfullName(props.name);
-  }, []);
+  }, [props.type,props.name]);
 
   const addIngredient = (ingredient) => {
     let updatedIngredients = [...choosenIngredients];
@@ -319,7 +319,6 @@ const Extras = (props) => {
           description={props.description}
           type={props.type}
           price={props.price}
-          type={props.type}
         >
           {props.children}
         </ExtrasModalOverlay>,
