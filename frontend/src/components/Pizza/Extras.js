@@ -104,7 +104,7 @@ const ExtrasModalOverlay = (props) => {
         amount: (existingIngredient.amount -= 1),
       };
       if (updatedIngredient.amount <= 0) {
-        updatedIngredients.splice(existingIngredientIndex);
+        updatedIngredients.splice(existingIngredientIndex,1);
       } else {
         updatedIngredients[existingIngredientIndex] = updatedIngredient;
       }
@@ -259,7 +259,7 @@ const ExtrasModalOverlay = (props) => {
       </div>
 
       <div className={styles["ingredient-list"]}>
-        {props.type == "Pizza" && <h1>Dodatki</h1>}
+        {props.type === "Pizza" && <h1>Dodatki</h1>}
         {availableIngredients &&
           availableIngredients
             .filter((x) => x.ingredientType === "extra")
